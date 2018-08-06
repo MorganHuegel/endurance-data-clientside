@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+.error-message {
+  color: red;
+}
+
+.navbar-link {
+  padding: 5px;
+}
