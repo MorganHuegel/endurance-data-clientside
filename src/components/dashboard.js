@@ -1,4 +1,8 @@
 import React from 'react';
+import WorkoutList from './workoutList';
+import SingleWorkout from './singleWorkout';
+import DataAnalysis from './dataAnalysis';
+import UserPreferences from './userPreferences';
 import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
 
 export default function Dashboard(props){
@@ -10,10 +14,12 @@ export default function Dashboard(props){
           <Link to='/analysis' className='navbar-link'>Data Analysis</Link>
           <Link to='/profile' className='navbar-link'>User Preferences</Link>
         </nav>
-        <ul>
-          <li>{props.currentUser.workouts[0].date}</li>
-        </ul>
+
+        <Route exact path='/workouts' component={WorkoutList}/>
+        <Route exact path='/workouts/:id' component={SingleWorkout}/>
+        <Route exact path='/analysis' component={DataAnalysis}/>
+        <Route exact path='/profile' component={UserPreferences}/>
       </div>
-      </Router>
+    </Router>
   )
 }

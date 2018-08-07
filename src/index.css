@@ -4,10 +4,20 @@ body {
   font-family: sans-serif;
 }
 
+li {
+  list-style: none;
+}
+
 .error-message {
   color: red;
 }
 
 .navbar-link {
   padding: 5px;
+}
+
+.show-more {
+  color: blue;
+  text-decoration: underline;
+  text-align: center;
 }

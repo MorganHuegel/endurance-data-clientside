@@ -14,6 +14,9 @@ export const loginUser = (newUser) => (dispatch) => {
       'Content-Type': 'application/json'
     }
   })
+  //then receive Token from response, store in local storage
+  //then send GET request with token
+  //then populate currentUser workouts
   .then(res => {
     if(!res.ok){
 
