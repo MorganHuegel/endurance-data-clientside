@@ -1,12 +1,14 @@
 import { SERVER_URL } from '../config';
 import { 
   changeUserLoading, 
-  changeUserSuccess, 
   changeUserFail 
 } from './register-user';
 
+
 export const loginUser = (newUser) => (dispatch) => {
   dispatch(changeUserLoading(true));
+  localStorage.removeItem('authToken');
+  console.log('LOCAL STORAGE BEFORE', localStorage);
   return fetch(SERVER_URL + '/login', {
     method: 'POST',
     body: JSON.stringify(newUser),
@@ -14,9 +16,6 @@ export const loginUser = (newUser) => (dispatch) => {
       'Content-Type': 'application/json'
     }
   })
-  //then receive Token from response, store in local storage
-  //then send GET request with token
-  //then populate currentUser workouts
   .then(res => {
     if(!res.ok){
 
@@ -37,8 +36,9 @@ export const loginUser = (newUser) => (dispatch) => {
     //successful response
     return res.json();
   })
-  .then(createdUser => {
-    dispatch(changeUserSuccess(createdUser)); //will update 'currentUser' in the store
+  .then(token => {
+    console.log('SUCCESSFULLY OBTAINED TOKEN', token);
+    return localStorage.setItem('authToken', token);
   })
   .catch(err => dispatch(changeUserFail(err, 'login')) ) //will update 'loginError' in the store
 }

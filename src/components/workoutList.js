@@ -29,13 +29,13 @@ export function WorkoutList(props){
 
   const showMoreLinks = nonDisplayedDates.map(date => {
     return (
-      <li className='show-more' key='date'>
+      <li className='show-more' key={Date.parse(date)}>
         <a>Show {date}</a>
       </li>
     )
   });
 
-  
+
   return(
     <div>
       <h2>Workout</h2>

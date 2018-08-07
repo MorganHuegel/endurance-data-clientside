@@ -30,7 +30,6 @@ export default function authReducer(state=initialState, action){
 
   } else if (action.type === CHANGE_USER_FAIL){
     if(action.form === 'register') {
-      console.log('IN REDUCER',action.error);
       return Object.assign({}, state, {
         loading: false,
         currentUser: null,

@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {loginUser} from '../actions/login-user';
-import {changeUserFail} from '../actions/register-user';
+import { getWorkouts } from '../actions/workouts';
+import { changeUserFail } from '../actions/register-user';
 
 class LoginForm extends React.Component{
 
@@ -40,7 +41,8 @@ class LoginForm extends React.Component{
     }
 
     //fetches user data from database; updates currentUser in store if successful fetch
-    this.props.dispatch(loginUser({username, password}));
+    return this.props.dispatch(loginUser({username, password}))
+      .then( () => this.props.dispatch(getWorkouts()));
   }
 
 

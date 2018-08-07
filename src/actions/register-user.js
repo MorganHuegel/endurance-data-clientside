@@ -1,5 +1,4 @@
-import {SERVER_URL} from '../config';
-
+import { SERVER_URL } from '../config';
 
 export const CHANGE_USER_LOADING = 'CHANGE_USER_LOADING';
 export function changeUserLoading(loading) {
@@ -25,6 +24,7 @@ export function changeUserFail(error, form) {
     form
   }
 }
+
 
 
 
@@ -58,8 +58,8 @@ export const registerUser = (newUser) => (dispatch) => {
     //successful response
     return res.json();
   })
-  .then(createdUser => {
-    dispatch(changeUserSuccess(createdUser)); //will update 'currentUser' in the store
+  .then(token => {
+    localStorage.setItem('authToken', token);
   })
   .catch(err => {
     dispatch(changeUserFail(err, 'register'));  //will update 'registerError' in the store

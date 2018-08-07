@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {registerUser, changeUserFail} from '../actions/register-user';
+import { getWorkouts } from '../actions/workouts';
 
 class RegisterForm extends React.Component{
 
@@ -44,12 +45,14 @@ class RegisterForm extends React.Component{
 
 
     //registers user in database, then updates currentUser in store
-    this.props.dispatch(registerUser({
+    return this.props.dispatch(registerUser({
       username: newUsername,
       password: newPassword,
       email: newEmail
     }))
-
+      .then(() => {
+        return this.props.dispatch(getWorkouts());
+      })
   }
 
 

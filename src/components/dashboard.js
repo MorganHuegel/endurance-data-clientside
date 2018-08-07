@@ -3,7 +3,7 @@ import WorkoutList from './workoutList';
 import SingleWorkout from './singleWorkout';
 import DataAnalysis from './dataAnalysis';
 import UserPreferences from './userPreferences';
-import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 export default function Dashboard(props){
   return (
