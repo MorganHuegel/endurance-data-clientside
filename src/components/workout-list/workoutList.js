@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import ShowMoreWorkouts from './showMoreWorkouts';
+import { Link } from 'react-router-dom';
 
 export function WorkoutList(props){
   const currentTime = Date.now();
@@ -13,12 +15,15 @@ export function WorkoutList(props){
     if(currentTime - workoutDate <= 2592000000){
       return (
         <li key={workout.id}>
-          {moment(workoutDate).format('MMMM Do, dddd')}
+          <Link to={`/workouts/${workout.id}`}>
+            {moment(workoutDate).format('MMMM Do, dddd')}
+          </Link>
         </li>
       )
-    } else {  // for workouts that aren't shown, display their month as a link below
+    } else {  
+      // for workouts that aren't shown, display their month as a link below
       const alreadyThere = nonDisplayedDates.find(date => {
-        return date = moment(workoutDate).format('MMMM YYYY');
+        return date === moment(workoutDate).format('MMMM YYYY');
       })
       if(!alreadyThere){
         nonDisplayedDates.push(moment(workoutDate).format('MMMM YYYY'));
@@ -27,24 +32,14 @@ export function WorkoutList(props){
     }
   });
 
-  const showMoreLinks = nonDisplayedDates.map(date => {
-    return (
-      <li className='show-more' key={Date.parse(date)}>
-        <a>Show {date}</a>
-      </li>
-    )
-  });
-
 
   return(
     <div>
-      <h2>Workout</h2>
+      <h2>Most Recent</h2>
       <ul>
         {workoutList}
       </ul>
-      <ul>
-        {showMoreLinks}
-      </ul>
+      <ShowMoreWorkouts nonDisplayedDates={nonDisplayedDates} currentUser={props.currentUser}/>
     </div>
   );
 }

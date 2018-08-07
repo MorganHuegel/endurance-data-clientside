@@ -4,7 +4,6 @@ import { changeUserLoading, changeUserSuccess, changeUserFail } from './register
 export const getWorkouts = () => (dispatch) => {
   dispatch(changeUserLoading(true));
   const authToken = localStorage.getItem('authToken');
-  console.log('PREPARING FOR GET REQUEST, GOT TOKEN:', authToken);
   return fetch(`${SERVER_URL}/workouts`, {
     headers: {
       'Content-Type': 'application/json',
@@ -30,11 +29,9 @@ export const getWorkouts = () => (dispatch) => {
     return response.json();
   })
   .then( newUser => {
-    console.log('NEW USER',newUser);
     return dispatch(changeUserSuccess(newUser));
   })
   .catch(err => {
-    console.log('IN THE CATCH BLOCK', err);
     dispatch(changeUserFail(err, 'login'));
   });
 }

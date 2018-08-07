@@ -1,8 +1,8 @@
 import React from 'react';
-import WorkoutList from './workoutList';
-import SingleWorkout from './singleWorkout';
-import DataAnalysis from './dataAnalysis';
-import UserPreferences from './userPreferences';
+import WorkoutList from './workout-list/workoutList';
+import SingleWorkout from './workout-list/singleWorkout';
+import DataAnalysis from './data-analysis/dataAnalysis';
+import UserPreferences from './user-preferences/userPreferences';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 export default function Dashboard(props){
