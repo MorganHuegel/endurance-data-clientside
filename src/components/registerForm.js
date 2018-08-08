@@ -44,14 +44,18 @@ class RegisterForm extends React.Component{
     }
 
 
-    //registers user in database, then updates currentUser in store
+    //registers user in database, receives token, then fetches user data
     return this.props.dispatch(registerUser({
       username: newUsername,
       password: newPassword,
       email: newEmail
     }))
-      .then(() => {
-        return this.props.dispatch(getWorkouts());
+      .then( token => {
+        if(!token){
+          return;
+        } else {
+          return this.props.dispatch(getWorkouts());
+        }
       })
   }
 

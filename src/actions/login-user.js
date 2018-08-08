@@ -37,8 +37,10 @@ export const loginUser = (newUser) => (dispatch) => {
     return res.json();
   })
   .then(token => {
-    console.log('SUCCESSFULLY OBTAINED TOKEN', token);
-    return localStorage.setItem('authToken', token);
+    localStorage.setItem('authToken', token);
+    return token;
   })
-  .catch(err => dispatch(changeUserFail(err, 'login')) ) //will update 'loginError' in the store
+  .catch(err => {
+    dispatch(changeUserFail(err, 'login'));  //will update 'loginError' in the store
+  }) 
 }

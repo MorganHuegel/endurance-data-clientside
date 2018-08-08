@@ -40,9 +40,15 @@ class LoginForm extends React.Component{
       }, 'login'));
     }
 
-    //fetches user data from database; updates currentUser in store if successful fetch
+    //fetches token from server if valid credentials, then fetches workouts
     return this.props.dispatch(loginUser({username, password}))
-      .then( () => this.props.dispatch(getWorkouts()));
+      .then( token => {
+        if(!token){
+          return;
+        } else {
+          this.props.dispatch(getWorkouts());
+        }
+      })
   }
 
 

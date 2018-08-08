@@ -60,6 +60,7 @@ export const registerUser = (newUser) => (dispatch) => {
   })
   .then(token => {
     localStorage.setItem('authToken', token);
+    return token;
   })
   .catch(err => {
     dispatch(changeUserFail(err, 'register'));  //will update 'registerError' in the store
