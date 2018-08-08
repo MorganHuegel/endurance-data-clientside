@@ -8,7 +8,6 @@ import {
 export const loginUser = (newUser) => (dispatch) => {
   dispatch(changeUserLoading(true));
   localStorage.removeItem('authToken');
-  console.log('LOCAL STORAGE BEFORE', localStorage);
   return fetch(SERVER_URL + '/login', {
     method: 'POST',
     body: JSON.stringify(newUser),

@@ -3,7 +3,7 @@ import LoginScreen from './loginScreen';
 import Dashboard from './dashboard';
 import {connect} from 'react-redux';
 import Spinner from 'react-spinkit'
-import { getWorkouts } from '../actions/workouts';
+import { getWorkouts } from '../actions/workoutsGet';
 
 class App extends React.Component {
   componentWillMount(){
@@ -22,13 +22,13 @@ class App extends React.Component {
       mainContent = <LoginScreen registerError={this.props.registerError} loginError={this.props.loginError}/>
 
     } else {
-      mainContent = <Dashboard currentUser={this.props.currentUser}/>
+      mainContent = <Dashboard currentUser={this.props.currentUser} workoutError={this.props.workoutError}/>
     }
     
     return (
       <div>
         <header role='banner'>
-          <h1>Workout The Data</h1>
+          <h1>Endurance Data</h1>
         </header>
 
         <main role='main'>
@@ -44,7 +44,8 @@ const mapStateToProps = (state) => {
     loading: state.auth.loading,
     currentUser: state.auth.currentUser,
     registerError: state.auth.registerError,
-    loginError: state.auth.loginError
+    loginError: state.auth.loginError,
+    workoutError: state.auth.workoutError
   }
 }
 

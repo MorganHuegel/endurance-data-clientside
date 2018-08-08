@@ -1,5 +1,4 @@
 import React from 'react';
-//import {Field} from 'redux-form';
 
 import LoginForm from './loginForm';
 import RegisterForm from './registerForm';

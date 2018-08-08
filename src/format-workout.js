@@ -11,8 +11,7 @@ export function formatWorkoutDisplay(field, workoutObj){
       delete workoutObj['userId'];
       return;
     case 'date':
-      console.log('DIFFERENCE',now - moment(workoutObj.date).format('x'))
-      if( now - moment(workoutObj.date).format('x') <= 1000 * 60 * 60 * 24 * 365){
+      if( Math.abs(now - moment(workoutObj.date).format('x')) <= 1000 * 60 * 60 * 24 * 365 ){   // if date is not in the same year as current year, show the year on screen
         workoutObj.date = moment(workoutObj.date).format('MMMM Do, dddd');
         return;
       } else {

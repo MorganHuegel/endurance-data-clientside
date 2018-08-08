@@ -20,7 +20,7 @@ export function WorkoutList(props){
           </Link>
         </li>
       )
-    } else {  
+    } else {
       // for workouts that aren't shown, display their month as a link below
       const alreadyThere = nonDisplayedDates.find(date => {
         return date === moment(workoutDate).format('MMMM YYYY');
@@ -35,6 +35,7 @@ export function WorkoutList(props){
 
   return(
     <div>
+      <button>Log New Workout</button>
       <h2>Most Recent</h2>
       <ul>
         {workoutList}

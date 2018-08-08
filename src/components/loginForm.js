@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {loginUser} from '../actions/login-user';
-import { getWorkouts } from '../actions/workouts';
+import { getWorkouts } from '../actions/workoutsGet';
 import { changeUserFail } from '../actions/register-user';
 
 class LoginForm extends React.Component{

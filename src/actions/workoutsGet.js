@@ -1,6 +1,8 @@
 import { SERVER_URL } from '../config';
 import { changeUserLoading, changeUserSuccess, changeUserFail } from './register-user';
 
+
+
 export const getWorkouts = () => (dispatch) => {
   dispatch(changeUserLoading(true));
   const authToken = localStorage.getItem('authToken');

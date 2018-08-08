@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Redirect, Switch } from 'react-router-dom';
 
 import WorkoutList from './workout-list/workoutList';
 import SingleWorkout from './workout-list/singleWorkout';
@@ -18,12 +18,18 @@ export default function Dashboard(props){
           <Link to='/profile' className='navbar-link'>User Preferences</Link>
         </nav>
 
-        <Route exact path='/workouts' component={WorkoutList}/>
-        <Route exact path='/workouts/:id' component={SingleWorkout}/>
-        <Route exact path='/workouts/:id/edit' component={SingleWorkoutEdit}/>
-        <Route exact path='/workouts/:id/delete' component={SingleWorkoutDelete}/>
-        <Route exact path='/analysis' component={DataAnalysis}/>
-        <Route exact path='/profile' component={UserPreferences}/>
+        <p className='error-message'>{props.workoutError}</p>
+
+        <Switch>
+          <Route exact path='/workouts' component={WorkoutList}/>
+          <Route exact path='/workouts/:id' component={SingleWorkout}/>
+          <Route exact path='/workouts/:id/edit' component={SingleWorkoutEdit}/>
+          <Route exact path='/workouts/:id/delete' component={SingleWorkoutDelete}/>
+          <Route exact path='/analysis' component={DataAnalysis}/>
+          <Route exact path='/profile' component={UserPreferences}/>
+          <Redirect from='/' to='/workouts'/>
+        </Switch>
+
       </div>
     </Router>
   )

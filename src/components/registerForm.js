@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {registerUser, changeUserFail} from '../actions/register-user';
-import { getWorkouts } from '../actions/workouts';
+import { getWorkouts } from '../actions/workoutsGet';
 
 class RegisterForm extends React.Component{
 

@@ -20,12 +20,10 @@ export default class ShowMoreWorkouts extends React.Component {
   }
 
   handleShowSectionClick(targetDate){
-    console.log('TARGET DATE', targetDate);
     this.setState({[`${targetDate}`]: true})
   }
 
   handleHideSectionClick(targetDate){
-    console.log('TARGET DATE', targetDate);
     this.setState({[`${targetDate}`]: false})
   }
 
@@ -61,7 +59,7 @@ export default class ShowMoreWorkouts extends React.Component {
         });
 
         return (
-          <div>
+          <div key={date}>
             <h3>
               {date}
               <button onClick={e => this.handleHideSectionClick(date)}>Hide</button>
