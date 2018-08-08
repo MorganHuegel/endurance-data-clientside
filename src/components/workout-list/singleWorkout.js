@@ -1,28 +1,54 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { formatWorkoutDisplay } from '../../format-workout';
+import { Link } from 'react-router-dom';
 
 function SingleWorkout(props){
+  // finds workout by ID from params
   const currentWorkout = props.currentUser.workouts.find(entry => entry.id === props.workoutId);
 
-  const fieldsList = Object.keys(currentWorkout)
-  const valuesList = fieldsList.map(field => {
-    return currentWorkout[field];
+  //makes copy of workout so that the state is not modified directly
+  const serializedWorkout = Object.assign({}, currentWorkout);
+
+  /* for fields that are objects {amount:... unit:...}, turns value into a single
+  string.  Also, removes ID and userID from object, because those don't need displayed.
+  Also, runs each field through the formatting function to remove camel casing */
+  Object.keys(serializedWorkout).forEach(field => {
+    formatWorkoutDisplay(field, serializedWorkout);
   })
 
-  fieldsList.forEach(field => {
-    if(typeof currentWorkout[field] === 'Object'){
-      console.log(field);
+  //Displays formatted data in a list
+  const workoutDetails = Object.keys(serializedWorkout).map(field => {
+    if(field !== 'date') {
+      return (
+        <li key={field}>
+          <p>{field}: {serializedWorkout[field]}</p>
+        </li>
+      )
+    } else {
+      return null;
     }
-  })
-  console.log('FIELDS',fieldsList);
-  console.log('VALUES',valuesList);
+  });
+
 
   return (
     <div>
-      <h2>Single Workout {props.workoutId}</h2>
+      <h2>{serializedWorkout.date}</h2>
       <ul>
-        {fieldsList}
+        {workoutDetails}
       </ul>
+
+      <Link to='/workouts'>
+        <button>Back to Workouts</button>
+      </Link>
+
+      <Link to={`/workouts/${props.workoutId}/edit`}>
+        <button>Edit Workout</button>
+      </Link>
+
+      <Link to={`/workouts/${props.workoutId}/delete`}>
+        <button>Delete Workout</button>
+      </Link>
     </div>
 
   )

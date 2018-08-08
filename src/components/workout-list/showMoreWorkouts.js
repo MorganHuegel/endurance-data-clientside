@@ -31,11 +31,6 @@ export default class ShowMoreWorkouts extends React.Component {
 
 
   render(){
-    function handleClick (targetDate){
-      const unixTime = moment(targetDate, 'MMMM YYYY').format('x');
-
-    }
-
     const showMoreLinks = Object.keys(this.state).map(date => {
       if(this.state[date] === false){
         return (
