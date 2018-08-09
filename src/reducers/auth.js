@@ -1,9 +1,19 @@
 import {
-  CHANGE_USER_LOADING,
-  CHANGE_USER_SUCCESS,
-  CHANGE_USER_FAIL
-} from '../actions/register-user';
-import { DELETE_WORKOUT_LOCAL, SET_WORKOUT_ERROR } from '../actions/workoutsDelete';
+    CHANGE_USER_LOADING,
+    CHANGE_USER_SUCCESS,
+    CHANGE_USER_FAIL
+  } from '../actions/register-user';
+
+import { 
+    DELETE_WORKOUT_LOCAL, 
+    SET_WORKOUT_ERROR 
+  } from '../actions/workoutsDelete';
+
+import { 
+    UPDATE_USER_PREFERENCES_LOCAL,
+    UPDATE_USER_EMAIL_LOCAL,
+    UPDATE_USER_USERNAME_LOCAL 
+  } from '../actions/userUpdate';
 
 const initialState = {
   loading: false,
@@ -21,6 +31,8 @@ export default function authReducer(state=initialState, action){
     });
 
 
+
+
   } else if (action.type === CHANGE_USER_SUCCESS){
     return Object.assign({}, state, {
       loading: false,
@@ -28,6 +40,8 @@ export default function authReducer(state=initialState, action){
       registerError: null,
       loginError: null
     })
+
+
 
 
   } else if (action.type === CHANGE_USER_FAIL){
@@ -49,12 +63,12 @@ export default function authReducer(state=initialState, action){
 
 
 
-  } else if (action.type === DELETE_WORKOUT_LOCAL) {
-    const newWorkoutsArray = state.currentUser.workouts.filter(workout => workout.id !== action.workoutId);
 
+  } else if (action.type === UPDATE_USER_PREFERENCES_LOCAL) {
+    const { preferences } = action.updateObj;
     const newCurrentUser = Object.assign({}, state.currentUser, {
-      workouts: newWorkoutsArray
-    })
+      preferences: preferences
+    });
 
     return Object.assign({}, state, {
       loading: false,
@@ -65,9 +79,69 @@ export default function authReducer(state=initialState, action){
     });
 
 
-  } else if (action.type === SET_WORKOUT_ERROR) {
 
+
+  } else if (action.type === UPDATE_USER_EMAIL_LOCAL) {
+    const { email } = action.updateObj;
+    const newCurrentUser = Object.assign({}, state.currentUser, {
+      email: email
+    });
+
+    return Object.assign({}, state, {
+      loading: false,
+      currentUser: newCurrentUser,
+      registerError: null,
+      loginError: null,
+      workoutError: null
+    });
+
+
+
+
+  } else if (action.type === UPDATE_USER_USERNAME_LOCAL) {
+    const { username } = action.updateObj;
+    const newCurrentUser = Object.assign({}, state.currentUser, {
+      username: username
+    });
+
+    return Object.assign({}, state, {
+      loading: false,
+      currentUser: newCurrentUser,
+      registerError: null,
+      loginError: null,
+      workoutError: null
+    });
+
+
+
+
+  } else if (action.type === DELETE_WORKOUT_LOCAL) {
+    const newWorkoutsArray = state.currentUser.workouts.filter(workout => workout.id !== action.workoutId);
+    const newCurrentUser = Object.assign({}, state.currentUser, {
+      workouts: newWorkoutsArray
+    })
+    return Object.assign({}, state, {
+      loading: false,
+      currentUser: newCurrentUser,
+      registerError: null,
+      loginError: null,
+      workoutError: null
+    });
+
+
+
+
+  } else if (action.type === SET_WORKOUT_ERROR) {
+    return Object.assign({}, state, {
+      loading: false,
+      registerError: null,
+      loginError: null,
+      workoutError: action.errMessage
+    });
   }
+
+
+  
 
   return state;
 };

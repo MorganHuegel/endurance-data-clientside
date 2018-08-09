@@ -31,7 +31,7 @@ export function changeUserFail(error, form) {
 
 export const registerUser = (newUser) => (dispatch) => {
   dispatch(changeUserLoading(true));
-  return fetch(SERVER_URL + '/register', {
+  return fetch(SERVER_URL + '/users', {
     method: 'POST',
     body: JSON.stringify(newUser),
     headers: {

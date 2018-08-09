@@ -7,15 +7,27 @@ import SingleWorkoutEdit from './workout-list/singleWorkoutEdit';
 import SingleWorkoutDelete from './workout-list/singleWorkoutDelete';
 import DataAnalysis from './data-analysis/dataAnalysis';
 import UserPreferences from './user-preferences/userPreferences';
+import SetPreferences from './user-preferences/setPreferences';
+import SetEmail from './user-preferences/setEmail';
 
 export default function Dashboard(props){
+  if (props.currentUser.preferences.length === 0) {
+    return (
+      <Router>
+        <div>
+          <SetPreferences />
+        </div>
+      </Router>
+    )
+  } else {
+
   return (
     <Router>
       <div>
         <nav>
           <Link to='/workouts' className='navbar-link'>Workout Logs</Link>
           <Link to='/analysis' className='navbar-link'>Data Analysis</Link>
-          <Link to='/profile' className='navbar-link'>User Preferences</Link>
+          <Link to='/profile' className='navbar-link'>Profile</Link>
         </nav>
 
         <p className='error-message'>{props.workoutError}</p>
@@ -27,10 +39,13 @@ export default function Dashboard(props){
           <Route exact path='/workouts/:id/delete' component={SingleWorkoutDelete}/>
           <Route exact path='/analysis' component={DataAnalysis}/>
           <Route exact path='/profile' component={UserPreferences}/>
+          <Route exact path='/profile/preferences' component={SetPreferences} />
+          <Route exact path='/profile/email' component={SetEmail} />
           <Redirect from='/' to='/workouts'/>
         </Switch>
 
       </div>
     </Router>
   )
+  }
 }

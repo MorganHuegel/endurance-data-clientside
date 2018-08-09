@@ -29,6 +29,10 @@ export function formatWorkoutDisplay(field, workoutObj){
     case 'averagePace':
       workoutObj['Average Pace'] = `${workoutObj.averagePace.amount} ${workoutObj.averagePace.unit}`;
       delete workoutObj.averagePace;
+      return;    
+    case 'maximumPace':
+      workoutObj['Max Pace'] = `${workoutObj.maximumPace.amount} ${workoutObj.maximumPace.unit}`;
+      delete workoutObj.maximumPace;
       return;
     case 'averageWatts':
       workoutObj['Average Watts'] = `${workoutObj.averageWatts} watts`
