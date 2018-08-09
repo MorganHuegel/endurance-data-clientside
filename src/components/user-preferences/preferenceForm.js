@@ -49,7 +49,7 @@ export default class PreferenceForm extends React.Component {
       return <Redirect to={this.props.onSubmitPath} />
     }
 
-    /* DATA variable is at bottom of this file (lowered for brevity) */
+    /* DATA variable is at bottom of this file (for brevity) */
     const fieldsets = data.map(fieldset => {
       return <PreferenceFieldset 
         key={fieldset.name}

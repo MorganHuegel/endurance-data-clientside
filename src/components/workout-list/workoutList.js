@@ -1,10 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import moment from 'moment';
-import ShowMoreWorkouts from './showMoreWorkouts';
-import { Link } from 'react-router-dom';
 
-export function WorkoutList(props){
+import ShowMoreWorkouts from './showMoreWorkouts';
+
+export default function WorkoutList (props){
   const currentTime = Date.now();
   let nonDisplayedDates = [];
 
@@ -14,10 +13,8 @@ export function WorkoutList(props){
     //only display workouts for the last 30 days (1000 * 60 * 60 * 24 * 30)
     if(currentTime - workoutDate <= 2592000000){
       return (
-        <li key={workout.id}>
-          <Link to={`/workouts/${workout.id}`}>
-            {moment(workoutDate).format('MMMM Do, dddd')}
-          </Link>
+        <li key={workout.id} value={workout.id} onClick={e => console.log(e.target.value)}>
+          {moment(workoutDate).format('MMMM Do, dddd')}
         </li>
       )
     } else {
@@ -44,12 +41,3 @@ export function WorkoutList(props){
     </div>
   );
 }
-
-
-const mapStateToProps = (state, props) => {
-  return{
-    currentUser: state.auth.currentUser
-  }
-}
-
-export default connect(mapStateToProps)(WorkoutList);

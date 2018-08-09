@@ -57,8 +57,7 @@ class LoginForm extends React.Component{
     if(this.props.loginError){
       errorMessage = this.props.loginError.message
     }
-    console.log('ERROR MESSAGE',errorMessage);
-
+    
     return(
       <div className='login-container'>
         <h2>Login</h2>

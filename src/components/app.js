@@ -17,11 +17,8 @@ class App extends React.Component {
 
     if(this.props.loading === true){
       mainContent = <Spinner name='wordpress' fadeIn='none' />
-
-    } else if (!this.props.currentUser){
-      mainContent = <LoginScreen registerError={this.props.registerError} loginError={this.props.loginError}/>
-
-    } else if (this.props.registerError || this.props.loginError){
+      
+    } else if (!this.props.currentUser || this.props.registerError || this.props.loginError){
       mainContent = <LoginScreen registerError={this.props.registerError} loginError={this.props.loginError}/>
 
     } else {
