@@ -15,7 +15,7 @@ function Profile(){
         </div>
 
         <div>
-          <Link to=''>
+          <Link to='/profile/password'>
             <span>
               Change my password
             </span>

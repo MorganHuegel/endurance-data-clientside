@@ -1,4 +1,4 @@
-import { changeUserLoading } from "./register-user";
+import { changeUserLoading, changeUserFail } from "./register-user";
 import { SERVER_URL } from '../config';
 import { setWorkoutError } from "./workoutsDelete";
 
@@ -69,6 +69,12 @@ export const updateUserInfo = (updateObj) => (dispatch) => {
     } else if (updateObj.preferences) {
       return response.json()
         .then( () => dispatch(updateUserPreferencesLocal(updateObj)) );
+    } else if (updateObj.password) {
+      return response.json()
+        .then( () => {
+          localStorage.removeItem('authToken');
+          dispatch(changeUserFail({message: 'Please login again to continue'}, 'login'));
+        })
     }
   })
   .catch(err => {

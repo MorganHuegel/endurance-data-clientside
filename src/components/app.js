@@ -21,6 +21,9 @@ class App extends React.Component {
     } else if (!this.props.currentUser){
       mainContent = <LoginScreen registerError={this.props.registerError} loginError={this.props.loginError}/>
 
+    } else if (this.props.registerError || this.props.loginError){
+      mainContent = <LoginScreen registerError={this.props.registerError} loginError={this.props.loginError}/>
+
     } else {
       mainContent = <Dashboard currentUser={this.props.currentUser} workoutError={this.props.workoutError}/>
     }

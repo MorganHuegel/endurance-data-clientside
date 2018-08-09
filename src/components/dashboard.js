@@ -10,6 +10,7 @@ import Profile from './user-preferences/profile';
 import SetPreferences from './user-preferences/setPreferences';
 import SetEmail from './user-preferences/setEmail';
 import SetUsername from './user-preferences/setUsername';
+import SetPassword from './user-preferences/setPassword';
 
 export default function Dashboard(props){
   if (props.currentUser.preferences.length === 0) {
@@ -43,6 +44,7 @@ export default function Dashboard(props){
           <Route exact path='/profile/preferences' component={SetPreferences} />
           <Route exact path='/profile/email' component={SetEmail} />
           <Route exact path='/profile/username' component={SetUsername} />
+          <Route exact path='/profile/password' component={SetPassword} />
           <Redirect from='/' to='/workouts'/>
         </Switch>
 

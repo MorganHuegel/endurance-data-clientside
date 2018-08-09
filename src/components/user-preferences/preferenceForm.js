@@ -46,7 +46,7 @@ export default class PreferenceForm extends React.Component {
   render(props){
   
     if(this.state.submitted){
-      return <Redirect to='/profile' />
+      return <Redirect to={this.props.onSubmitPath} />
     }
 
     /* DATA variable is at bottom of this file (lowered for brevity) */
@@ -67,7 +67,7 @@ export default class PreferenceForm extends React.Component {
 
         <button type='submit'>{this.props.submitButtonMessage}</button>
         <button type='reset' onClick={() => this.setState({selectedFields: []})} >Clear Form</button>
-
+        {this.props.nevermindButton}
       </form>
     )
 

@@ -11,7 +11,7 @@ export const deleteWorkoutLocal = (workoutId) => ({
 
 export const SET_WORKOUT_ERROR = 'SET_WORKOUT_ERROR';
 export const setWorkoutError = (errMessage) => ({
-  type: DELETE_WORKOUT_LOCAL,
+  type: SET_WORKOUT_ERROR,
   errMessage
 })
 

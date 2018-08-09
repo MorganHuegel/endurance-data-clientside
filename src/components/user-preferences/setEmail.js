@@ -40,6 +40,8 @@ class SetEmail extends React.Component {
     return (
       <div>
         <h3>Change email</h3>
+        {this.props.workoutError}
+
         <form id='changeEmail' name='changeEmail' onSubmit={e => this.handleSubmit(e)}>
           {message}
           <label htmlFor='newEmail'>Enter email address to update our records:</label>

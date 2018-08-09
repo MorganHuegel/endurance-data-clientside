@@ -40,6 +40,7 @@ class SetUsername extends React.Component {
     return (
       <div>
         <h3>Change username</h3>
+        {this.props.workoutError}
         <form id='changeUsername' name='changeUsername' onSubmit={e => this.handleSubmit(e)}>
           {message}
           <label htmlFor='newUsername'>Enter a new username: </label>
