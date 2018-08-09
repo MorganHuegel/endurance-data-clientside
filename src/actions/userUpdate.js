@@ -59,7 +59,7 @@ export const updateUserInfo = (updateObj) => (dispatch) => {
     if (updateObj.username) {
       return response.json()
         .then(token => {
-          localStorage.removeItem('authToken'); // will need new token
+          localStorage.removeItem('authToken'); // will need new token for new username
           localStorage.setItem('authToken', token);
         })
         .then(() => dispatch(updateUserUsernameLocal(updateObj)) );
@@ -72,6 +72,6 @@ export const updateUserInfo = (updateObj) => (dispatch) => {
     }
   })
   .catch(err => {
-    dispatch(setWorkoutError('Update Failed'));
+    dispatch(setWorkoutError(err.message));
   });
 }

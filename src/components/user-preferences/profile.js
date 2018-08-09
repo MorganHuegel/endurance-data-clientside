@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-function UserPreferences(){
+function Profile(){
   return(
     <div>
       <h2>Profile Settings</h2>
@@ -23,7 +23,7 @@ function UserPreferences(){
         </div>
 
         <div>
-          <Link to=''>
+          <Link to='/profile/username'>
             <span>
               Change my username
             </span>
@@ -41,4 +41,4 @@ function UserPreferences(){
   );
 }
 
-export default connect()(UserPreferences);
+export default connect()(Profile);

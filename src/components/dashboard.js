@@ -6,9 +6,10 @@ import SingleWorkout from './workout-list/singleWorkout';
 import SingleWorkoutEdit from './workout-list/singleWorkoutEdit';
 import SingleWorkoutDelete from './workout-list/singleWorkoutDelete';
 import DataAnalysis from './data-analysis/dataAnalysis';
-import UserPreferences from './user-preferences/userPreferences';
+import Profile from './user-preferences/profile';
 import SetPreferences from './user-preferences/setPreferences';
 import SetEmail from './user-preferences/setEmail';
+import SetUsername from './user-preferences/setUsername';
 
 export default function Dashboard(props){
   if (props.currentUser.preferences.length === 0) {
@@ -38,9 +39,10 @@ export default function Dashboard(props){
           <Route exact path='/workouts/:id/edit' component={SingleWorkoutEdit}/>
           <Route exact path='/workouts/:id/delete' component={SingleWorkoutDelete}/>
           <Route exact path='/analysis' component={DataAnalysis}/>
-          <Route exact path='/profile' component={UserPreferences}/>
+          <Route exact path='/profile' component={Profile}/>
           <Route exact path='/profile/preferences' component={SetPreferences} />
           <Route exact path='/profile/email' component={SetEmail} />
+          <Route exact path='/profile/username' component={SetUsername} />
           <Redirect from='/' to='/workouts'/>
         </Switch>
 
