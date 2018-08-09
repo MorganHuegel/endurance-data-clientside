@@ -4,6 +4,17 @@ import moment from 'moment';
 import ShowMoreWorkouts from './showMoreWorkouts';
 
 export default function WorkoutList (props){
+  //when you click on workout, it updates stateful Workout component
+  function handleClickOnWorkout (event) {
+    const workoutId = event.target.getAttribute('workoutid');
+    if(!workoutId){
+      return;
+    } else {
+      return props.viewSingleWorkout(workoutId);
+    }
+  }
+
+
   const currentTime = Date.now();
   let nonDisplayedDates = [];
 
@@ -13,8 +24,8 @@ export default function WorkoutList (props){
     //only display workouts for the last 30 days (1000 * 60 * 60 * 24 * 30)
     if(currentTime - workoutDate <= 2592000000){
       return (
-        <li key={workout.id} value={workout.id} onClick={e => console.log(e.target.value)}>
-          {moment(workoutDate).format('MMMM Do, dddd')}
+        <li key={workout.id} id={workout.id}>
+          <a href={`#${workout.id}`} workoutid={workout.id}>{moment(workoutDate).format('MMMM Do, dddd')}</a>
         </li>
       )
     } else {
@@ -32,12 +43,15 @@ export default function WorkoutList (props){
 
   return(
     <div>
-      <button>Log New Workout</button>
+      <button onClick={() => props.toggleAddState(true)}>Log New Workout</button>
       <h2>Most Recent</h2>
-      <ul>
+      <ul onClick={e => handleClickOnWorkout(e)}>
         {workoutList}
       </ul>
-      <ShowMoreWorkouts nonDisplayedDates={nonDisplayedDates} currentUser={props.currentUser}/>
+      <ShowMoreWorkouts 
+      nonDisplayedDates={nonDisplayedDates} 
+      currentUser={props.currentUser}
+      viewSingleWorkout={props.viewSingleWorkout}/>
     </div>
   );
 }

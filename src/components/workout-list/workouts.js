@@ -1,7 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { deleteWorkoutDatabase } from '../../actions/workoutsDelete';
+import { addWorkoutDatabase } from '../../actions/workoutsAdd';
+
 import WorkoutList from './workoutList';
+import SingleWorkout from './singleWorkout';
+import SingleWorkoutDelete from './singleWorkoutDelete';
+import AddWorkout from './addNewWorkout';
 
 class Workouts extends React.Component{
   constructor(props){
@@ -13,23 +19,87 @@ class Workouts extends React.Component{
       viewingWorkout: false,
       deletingWorkout: false
     }
+
+    this.viewSingleWorkout = this.viewSingleWorkout.bind(this);
+    this.backToWorkoutList = this.backToWorkoutList.bind(this);
+    this.toggleDeleteScreen = this.toggleDeleteScreen.bind(this);
+    this.confirmDelete = this.confirmDelete.bind(this);
+    this.toggleAddState = this.toggleAddState.bind(this);
+    this.handleAddFormSubmit = this.handleAddFormSubmit.bind(this);
+  }
+
+  viewSingleWorkout(id){
+    const currentWorkout = this.props.currentUser.workouts.find(workout => workout.id === id);
+    this.setState({currentWorkout, viewingWorkout: true});
+  }
+
+  backToWorkoutList(){
+    this.setState({currentWorkout: null, viewingWorkout: false});
+  }
+
+  toggleDeleteScreen(bool){
+    this.setState({deletingWorkout: bool});
+  }
+
+  confirmDelete(){
+    const workoutId = this.state.currentWorkout.id;
+    this.setState({
+      deletingWorkout: false, 
+      currentWorkout: null,
+      viewingWorkout: false
+    }, //callback action to delete from database and delete from redux state
+      () => this.props.dispatch(deleteWorkoutDatabase(workoutId))
+    )
+  }
+
+  toggleAddState(bool){
+    this.setState({addingWorkout: bool});
+  }
+
+  handleAddFormSubmit(workoutObj){
+    this.setState({
+      addingWorkout: false,
+      currentWorkout: null,
+      editingWorkout: false,
+      viewingWorkout: false,
+      deletingWorkout: false
+    }, () => {   //callback action to add workout to database and redux state
+      this.props.dispatch(addWorkoutDatabase(workoutObj));
+    })
   }
 
   render(props){
     if(this.state.addingWorkout){
-      // return <AddWorkout /> ;
+      return <AddWorkout 
+                toggleAddState={this.toggleAddState}
+                currentUser={this.props.currentUser}
+                handleAddFormSubmit={this.handleAddFormSubmit}
+              />
 
     } else if (this.state.editingWorkout) {
       // return <EditWorkout currentWorkout={this.state.currentWorkout} />
+    
+    
+    } else if (this.state.deletingWorkout){
+      return <SingleWorkoutDelete 
+                currentWorkout={this.state.currentWorkout} 
+                confirmDelete={this.confirmDelete}
+                toggleDeleteScreen={this.toggleDeleteScreen}
+              />
       
     } else if (this.state.viewingWorkout){
-      // return <SingleWorkout currentWorkout={this.state.currentWorkout} />
-
-    } else if (this.state.deletingWorkout){
-      // return <DeleteWorkout currentWorkout={this.state.currentWorkout} />
+      return <SingleWorkout 
+                currentWorkout={this.state.currentWorkout}
+                backToWorkoutList={this.backToWorkoutList}
+                toggleDeleteScreen={this.toggleDeleteScreen}
+              />
 
     } else {
-      return <WorkoutList currentUser={this.props.currentUser}/>
+      return <WorkoutList 
+                currentUser={this.props.currentUser} 
+                viewSingleWorkout={this.viewSingleWorkout}
+                toggleAddState={this.toggleAddState}
+              />
     }
   }
 }

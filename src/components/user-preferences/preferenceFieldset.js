@@ -14,7 +14,7 @@ export default function PreferenceFieldset(props) {
 
   return(
     <fieldset name={props.name} form='preferenceForm' id={props.name}>
-      <h3>{props.displayName}</h3>
+      <legend>{props.displayName}</legend>
 
       {checkboxes}
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import moment from 'moment';
-import { Link } from 'react-router-dom';
 
 export default class ShowMoreWorkouts extends React.Component {
   constructor(props){
@@ -12,19 +11,27 @@ export default class ShowMoreWorkouts extends React.Component {
     })
 
     this.state = Object.assign({}, initialState);
-
   }
 
-  convertTimeStringToUnix(dateString){
+  convertTimeStringToUnix = (dateString) => {
     return moment(dateString, 'MMMM YYYY').format('x');
   }
 
-  handleShowSectionClick(targetDate){
+  handleShowSectionClick = (targetDate) => {
     this.setState({[`${targetDate}`]: true})
   }
 
-  handleHideSectionClick(targetDate){
+  handleHideSectionClick = (targetDate) => {
     this.setState({[`${targetDate}`]: false})
+  }
+
+  handleClickOnWorkout = (event) => {
+    const workoutId = event.target.getAttribute('workoutId');
+    if(!workoutId){
+      return;
+    } else {
+      return this.props.viewSingleWorkout(workoutId);
+    }
   }
 
 
@@ -47,13 +54,11 @@ export default class ShowMoreWorkouts extends React.Component {
                   && dataTime - (1000 * 60 * 60 * 24 * 30) <= buttonTime )
         });
 
-        // makes a list of all workouts within 30 days of the original button
+        // makes a list of all workouts within 30 days of the date on original button
         const showMoreList = withinThirtyDays.map(workout => {
           return (
-            <li key={workout.id}>
-              <Link to={`/workouts/${workout.id}`}>
-                {moment(workout.date).format('MMMM Do, dddd')}
-              </Link>
+            <li key={workout.id} id={workout.id}>
+              <a href={`#${workout.id}`} workoutid={workout.id}>{moment(workout.date).format('MMMM Do, dddd')}</a>
             </li>
           )
         });
@@ -64,7 +69,7 @@ export default class ShowMoreWorkouts extends React.Component {
               {date}
               <button onClick={e => this.handleHideSectionClick(date)}>Hide</button>
             </h3>
-            <ul>
+            <ul onClick={e => this.handleClickOnWorkout(e)}>
               {showMoreList}
             </ul>
           </div>

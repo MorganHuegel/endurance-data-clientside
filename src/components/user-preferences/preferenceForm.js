@@ -90,7 +90,7 @@ const data = [
       {value: 'maximumWatts', displayedValue:'Max Watts', sidenote:''},
       {value: 'totalElevation', displayedValue:'Total Elevation', sidenote:''},
       {value: 'averageHeartrate', displayedValue:'Average Heartrate', sidenote:''},
-      {value: 'maximumHeartrate', displayedValue:'Max Heartrate', sidenote:''},
+      {value: 'maxHeartrate', displayedValue:'Max Heartrate', sidenote:''},
       {value: 'tss', displayedValue:'TSS', sidenote:''}
     ]
   },

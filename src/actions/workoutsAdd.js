@@ -1,32 +1,30 @@
 import { SERVER_URL } from '../config';
 import { changeUserLoading } from './register-user';
+import { setWorkoutError } from './workoutsDelete';
 
 
-export const DELETE_WORKOUT_LOCAL = 'DELETE_WORKOUT_LOCAL';
-export const deleteWorkoutLocal = (workoutId) => ({
-  type: DELETE_WORKOUT_LOCAL,
-  workoutId
+export const ADD_WORKOUT_LOCAL = 'ADD_WORKOUT_LOCAL';
+export const addWorkoutLocal = (workoutObj) => ({
+  type: ADD_WORKOUT_LOCAL,
+  workoutObj
 })
 
 
-export const SET_WORKOUT_ERROR = 'SET_WORKOUT_ERROR';
-export const setWorkoutError = (errMessage) => ({
-  type: SET_WORKOUT_ERROR,
-  errMessage
-})
 
-
-export const deleteWorkoutDatabase = (workoutId) => (dispatch) => {
+export const addWorkoutDatabase = (newWorkoutObj) => (dispatch) => {
   dispatch(changeUserLoading(true));
   const authToken = localStorage.getItem('authToken');
-  return fetch(`${SERVER_URL}/workouts/${workoutId}`, {
-    method: 'DELETE',
+  console.log('NEW WORKOUT OBJ', newWorkoutObj);
+  return fetch(`${SERVER_URL}/workouts`, {
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'authorization': 'Bearer ' + authToken
-    }
+    },
+    body: JSON.stringify(newWorkoutObj)
   })
   .then(response => {
+
     if(!response.ok){
       //check for specific error sent by backend
       if( response.headers.has ('content-type') 
@@ -42,15 +40,15 @@ export const deleteWorkoutDatabase = (workoutId) => (dispatch) => {
       })
     }
 
-    return response.status;
+    return response.json();
   })
-  .then(status => {
-    console.log('STATUS',status, typeof status);
-    if (status === 204){
-      dispatch(deleteWorkoutLocal(workoutId));
-    }
+  .then( ({ id }) => {
+    newWorkoutObj.id = id;
+    console.log('ID',id);
+    dispatch(addWorkoutLocal(newWorkoutObj));
   })
   .catch(err => {
+    console.log('ERR IN CATCH', err);
     dispatch(setWorkoutError(err.message));
   });
 };

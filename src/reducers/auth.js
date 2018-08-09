@@ -15,6 +15,10 @@ import {
     UPDATE_USER_USERNAME_LOCAL 
   } from '../actions/userUpdate';
 
+  import {
+    ADD_WORKOUT_LOCAL
+  } from '../actions/workoutsAdd';
+
 const initialState = {
   loading: false,
   currentUser: null,
@@ -128,6 +132,21 @@ export default function authReducer(state=initialState, action){
       workoutError: null
     });
 
+
+
+  } else if (action.type === ADD_WORKOUT_LOCAL) {
+
+    const newCurrentUser = Object.assign({}, state.currentUser, {
+      workouts: [...state.currentUser.workouts, action.workoutObj]
+    });
+
+    return Object.assign({}, state, {
+      loading: false,
+      currentUser: newCurrentUser,
+      registerError: null,
+      loginError: null,
+      workoutError: null
+    });
 
 
 

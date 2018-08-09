@@ -1,11 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { formatWorkoutDisplay } from '../../format-workout';
-import { Link } from 'react-router-dom';
 
-function SingleWorkout(props){
-  // finds workout by ID from params
-  const currentWorkout = props.currentUser.workouts.find(entry => entry.id === props.workoutId);
+export default function SingleWorkout(props){
+  // gets workout from props
+  const currentWorkout = props.currentWorkout;
 
   //makes copy of workout so that the state is not modified directly
   const serializedWorkout = Object.assign({}, currentWorkout);
@@ -38,27 +36,12 @@ function SingleWorkout(props){
         {workoutDetails}
       </ul>
 
-      <Link to='/workouts'>
-        <button>Back to Workouts</button>
-      </Link>
+        <button onClick={() => props.backToWorkoutList()}>Back to Workouts</button>
 
-      <Link to={`/workouts/${props.workoutId}/edit`}>
         <button>Edit Workout</button>
-      </Link>
 
-      <Link to={`/workouts/${props.workoutId}/delete`}>
-        <button>Delete Workout</button>
-      </Link>
+        <button onClick={() => props.toggleDeleteScreen(true)}>Delete Workout</button>
     </div>
 
   )
 };
-
-const mapStateToProps = (state, props) => {
-  return {
-    workoutId: props.match.params.id,
-    currentUser: state.auth.currentUser
-  }
-}
-
-export default connect(mapStateToProps)(SingleWorkout);
