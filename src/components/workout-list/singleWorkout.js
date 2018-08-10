@@ -5,7 +5,7 @@ export default function SingleWorkout(props){
   // gets workout from props
   const currentWorkout = props.currentWorkout;
 
-  //makes copy of workout so that the state is not modified directly
+  //makes copy of workout so that the state is not mutated
   const serializedWorkout = Object.assign({}, currentWorkout);
 
   /* for fields that are objects {amount:... unit:...}, turns value into a single

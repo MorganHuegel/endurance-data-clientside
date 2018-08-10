@@ -15,9 +15,9 @@ import {
     UPDATE_USER_USERNAME_LOCAL 
   } from '../actions/userUpdate';
 
-  import {
-    ADD_WORKOUT_LOCAL
-  } from '../actions/workoutsAdd';
+  import { ADD_WORKOUT_LOCAL } from '../actions/workoutsAdd';
+  import { EDIT_WORKOUT_LOCAL } from '../actions/workoutsEdit';
+
 
 const initialState = {
   loading: false,
@@ -38,6 +38,10 @@ export default function authReducer(state=initialState, action){
 
 
   } else if (action.type === CHANGE_USER_SUCCESS){
+    action.userData.workouts.forEach(workout => { //database stores data in Zulu time.
+      workout.date = workout.date.replace(/Z/g, '');  //dropping the 'Z' at the end converts it to local time
+    })
+
     return Object.assign({}, state, {
       loading: false,
       currentUser: action.userData,
@@ -135,9 +139,29 @@ export default function authReducer(state=initialState, action){
 
 
   } else if (action.type === ADD_WORKOUT_LOCAL) {
-
+    action.workoutObj.date = action.workoutObj.date.replace(/Z/g, '');  //dropping the 'Z' at the end converts it to local time
     const newCurrentUser = Object.assign({}, state.currentUser, {
       workouts: [...state.currentUser.workouts, action.workoutObj]
+    });
+
+    return Object.assign({}, state, {
+      loading: false,
+      currentUser: newCurrentUser,
+      registerError: null,
+      loginError: null,
+      workoutError: null
+    });
+
+
+
+  } else if (action.type === EDIT_WORKOUT_LOCAL) {
+    action.workoutObj.date = action.workoutObj.date.replace(/Z/g, '');  //dropping the 'Z' at the end converts it to local time
+    const untouchedWorkouts = state.currentUser.workouts.filter(workout => workout.id !== action.workoutObj.id)
+
+    untouchedWorkouts.push(action.workoutObj);
+
+    const newCurrentUser = Object.assign({}, state.currentUser, {
+      workouts: untouchedWorkouts
     });
 
     return Object.assign({}, state, {

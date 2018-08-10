@@ -46,14 +46,13 @@ export default class ShowMoreWorkouts extends React.Component {
           </li>
         )
       } else {
-        // filters all workouts from state to include only ones within 30 days of date on the button
+        // filters all workouts from state to include only ones within 31 days of date on the button
         const withinThirtyDays = this.props.currentUser.workouts.filter(workout => {
           const buttonTime = this.convertTimeStringToUnix(date);
           const dataTime = Date.parse(workout.date);
           return ( dataTime >= buttonTime 
-                  && dataTime - (1000 * 60 * 60 * 24 * 30) <= buttonTime )
+                  && dataTime - (1000 * 60 * 60 * 24 * 31) <= buttonTime )
         });
-
         // makes a list of all workouts within 30 days of the date on original button
         const showMoreList = withinThirtyDays.map(workout => {
           return (

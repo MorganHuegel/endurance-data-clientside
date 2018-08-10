@@ -2,7 +2,7 @@ import moment from 'moment';
 
 export function formatWorkoutDisplay(field, workoutObj){
   const now = Date.now();
-
+  
   switch (field) {
     case 'id':
       delete workoutObj['id'];

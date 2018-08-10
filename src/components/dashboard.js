@@ -2,8 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link, Redirect, Switch } from 'react-router-dom';
 
 import Workouts from './workout-list/workouts';
-import SingleWorkoutEdit from './workout-list/singleWorkoutEdit';
-import SingleWorkoutDelete from './workout-list/singleWorkoutDelete';
 import DataAnalysis from './data-analysis/dataAnalysis';
 import Profile from './user-preferences/profile';
 import SetPreferences from './user-preferences/setPreferences';
@@ -35,8 +33,6 @@ export default function Dashboard(props){
 
         <Switch>
           <Route exact path='/workouts' component={Workouts}/>
-          <Route exact path='/workouts/:id/edit' component={SingleWorkoutEdit}/>
-          <Route exact path='/workouts/:id/delete' component={SingleWorkoutDelete}/> */}
           <Route exact path='/analysis' component={DataAnalysis}/>
           <Route exact path='/profile' component={Profile}/>
           <Route exact path='/profile/preferences' component={SetPreferences} />

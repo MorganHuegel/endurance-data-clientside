@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { deleteWorkoutDatabase } from '../../actions/workoutsDelete';
 import { addWorkoutDatabase } from '../../actions/workoutsAdd';
+import { editWorkoutDatabase } from '../../actions/workoutsEdit';
 
 import WorkoutList from './workoutList';
 import SingleWorkout from './singleWorkout';
@@ -18,7 +19,8 @@ class Workouts extends React.Component{
       currentWorkout: null,
       editingWorkout: false,
       viewingWorkout: false,
-      deletingWorkout: false
+      deletingWorkout: false,
+      formOptions: []
     }
 
     this.viewSingleWorkout = this.viewSingleWorkout.bind(this);
@@ -28,6 +30,7 @@ class Workouts extends React.Component{
     this.toggleAddState = this.toggleAddState.bind(this);
     this.handleAddFormSubmit = this.handleAddFormSubmit.bind(this);
     this.toggleEditState = this.toggleEditState.bind(this);
+    this.handleEditFormSubmit = this.handleEditFormSubmit.bind(this);
   }
 
   viewSingleWorkout(id){
@@ -74,19 +77,42 @@ class Workouts extends React.Component{
     this.setState({editingWorkout: bool})
   }
 
+  handleEditFormSubmit(workoutObj){
+    this.setState({
+      addingWorkout: false,
+      editingWorkout: false,
+      viewingWorkout: true,
+      deletingWorkout: false
+    }, () => {
+      this.props.dispatch(editWorkoutDatabase(workoutObj))
+    }
+  )}
+
+  addFormOption = (fieldArray) => {
+    this.setState({formOptions: fieldArray})
+  }
+
+  deleteFormOption = () => {
+
+  }
+
   render(props){
     if(this.state.addingWorkout){
       return <AddWorkout 
                 toggleAddState={this.toggleAddState}
                 currentUser={this.props.currentUser}
                 handleAddFormSubmit={this.handleAddFormSubmit}
-                dispatc={this.props.dispatch}
+                dispatch={this.props.dispatch}
+                formOptions={this.state.formOptions}
+                addFormOption={this.addFormOption}
               />
 
     } else if (this.state.editingWorkout) {
       return <EditWorkout
                 currentWorkout={this.state.currentWorkout}
                 toggleEditState={this.toggleEditState}
+                handleEditFormSubmit={this.handleEditFormSubmit}
+                formOptions={this.state.formOptions}
               />
     
     

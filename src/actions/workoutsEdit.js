@@ -3,24 +3,23 @@ import { changeUserLoading } from './register-user';
 import { setWorkoutError } from './workoutsDelete';
 
 
-export const ADD_WORKOUT_LOCAL = 'ADD_WORKOUT_LOCAL';
-export const addWorkoutLocal = (workoutObj) => ({
-  type: ADD_WORKOUT_LOCAL,
+export const EDIT_WORKOUT_LOCAL = 'EDIT_WORKOUT_LOCAL';
+export const editWorkoutLocal = (workoutObj) => ({
+  type: EDIT_WORKOUT_LOCAL,
   workoutObj
 })
 
 
-
-export const addWorkoutDatabase = (newWorkoutObj) => (dispatch) => {
+export const editWorkoutDatabase = (workoutObj) => (dispatch) => {
   dispatch(changeUserLoading(true));
   const authToken = localStorage.getItem('authToken');
   return fetch(`${SERVER_URL}/workouts`, {
-    method: 'POST',
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
       'authorization': 'Bearer ' + authToken
     },
-    body: JSON.stringify(newWorkoutObj)
+    body: JSON.stringify(workoutObj)
   })
   .then(response => {
 
@@ -41,12 +40,10 @@ export const addWorkoutDatabase = (newWorkoutObj) => (dispatch) => {
 
     return response.json();
   })
-  .then( dbWorkout => {
-    dispatch(addWorkoutLocal(dbWorkout));
+  .then( updatedWorkout => {
+    dispatch(editWorkoutLocal(updatedWorkout));
   })
   .catch(err => {
     dispatch(setWorkoutError(err.message));
   });
 };
-
-

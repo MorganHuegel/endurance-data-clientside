@@ -1,11 +1,15 @@
 import React from 'react';
 import moment from 'moment';
-import { renderInputsFromPreferences } from './renderInputFunction';
+import { renderInputs } from './renderInputFunction';
 import { setWorkoutError } from '../../actions/workoutsDelete';
 
-export default function AddWorkout(props){
+export default class AddWorkout extends React.Component{
 
-  function handleSubmit(event){
+  // componentWillMount(props){
+  //   this.setState({formOptions: this.props.currentUser.preferences});
+  // }
+
+  handleSubmit = (event) => {
     event.preventDefault();
     //all possible fields that need units appended
     const fieldsWithUnit = [
@@ -13,7 +17,7 @@ export default function AddWorkout(props){
       'maximumPace', 'totalElevation', 'waterDrank'
     ];
     let newWorkoutObj = {};
-    props.currentUser.preferences.forEach(field => {
+    this.props.currentUser.preferences.forEach(field => {
       if(!event.target[field].value){ //Don't store empty fields
         return;
       }
@@ -31,29 +35,43 @@ export default function AddWorkout(props){
     })
 
     newWorkoutObj.date = event.target['date'].value;
-    newWorkoutObj.userId = props.currentUser.id;
+    newWorkoutObj.userId = this.props.currentUser.id;
     if(!newWorkoutObj.date){
-      return props.dispatch(setWorkoutError('Date must be included for this workout.'));
+      return this.props.dispatch(setWorkoutError('Date must be included for this workout.'));
     }
 
-    props.handleAddFormSubmit(newWorkoutObj);
+    this.props.handleAddFormSubmit(newWorkoutObj);
   }
 
-  const inputFields = renderInputsFromPreferences(props.currentUser.preferences);
-  let currentDate = moment().format('YYYY-MM-DD');
+  render(){
 
-  return (
-    <div className='lightbox'>
-      <h3>New Workout</h3>
-      <form id='addForm' onSubmit={e => handleSubmit(e)}>
-        <label htmlFor='date'>Workout Date:</label>
-        <input type='date' id='date' defaultValue={currentDate} required/>
+    const inputFields = this.props.currentUser.preferences.map(field => {
+      return renderInputs(field, 'addForm');
+    });
 
-        {inputFields}
+    let currentDate = moment().format('YYYY-MM-DD');
 
-        <button type='submit'>Submit Workout</button>
-        <button type='reset' onClick={() => props.toggleAddState(false)}>Cancel</button>
-      </form>
-    </div>
-  )
+    return (
+      <div className='lightbox'>
+        <h3>New Workout</h3>
+        <form id='addForm' onSubmit={e => this.handleSubmit(e)}>
+          <label htmlFor='date'>Workout Date:</label>
+          <input type='date' id='date' defaultValue={currentDate} required/>
+          {inputFields}
+          {addFieldDropbox}
+          <button type='submit'>Submit Workout</button>
+          <button type='reset' onClick={() => this.props.toggleAddState(false)}>Cancel</button>
+        </form>
+      </div>
+    )
+  }
 }
+
+const addFieldDropbox = (
+  <div className='addField'>
+  <label htmlFor='addFieldDropbox'>Add Field:</label>
+  <select>
+    <option>Total Distance:</option>
+  </select>
+</div>
+);

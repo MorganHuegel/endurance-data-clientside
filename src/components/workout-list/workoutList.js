@@ -18,6 +18,11 @@ export default function WorkoutList (props){
   const currentTime = Date.now();
   let nonDisplayedDates = [];
 
+  //Makes sure workouts display in chronological order
+  props.currentUser.workouts.sort( (a, b) => {
+    return moment(b.date).format('x') - moment(a.date).format('x');
+  });
+
   const workoutList = props.currentUser.workouts.map(workout => {
     const workoutDate = Date.parse(workout.date);
 
