@@ -45,7 +45,6 @@ export const deleteWorkoutDatabase = (workoutId) => (dispatch) => {
     return response.status;
   })
   .then(status => {
-    console.log('STATUS',status, typeof status);
     if (status === 204){
       dispatch(deleteWorkoutLocal(workoutId));
     }

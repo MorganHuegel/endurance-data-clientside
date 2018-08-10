@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
-import { renderInputsFromPreferences } from './renderInputFunctions';
+import { renderInputsFromPreferences } from './renderInputFunction';
+import { setWorkoutError } from '../../actions/workoutsDelete';
 
 export default function AddWorkout(props){
 
@@ -31,7 +32,10 @@ export default function AddWorkout(props){
 
     newWorkoutObj.date = event.target['date'].value;
     newWorkoutObj.userId = props.currentUser.id;
-    console.log(newWorkoutObj);
+    if(!newWorkoutObj.date){
+      return props.dispatch(setWorkoutError('Date must be included for this workout.'));
+    }
+
     props.handleAddFormSubmit(newWorkoutObj);
   }
 

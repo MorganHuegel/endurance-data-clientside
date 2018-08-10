@@ -8,6 +8,7 @@ import WorkoutList from './workoutList';
 import SingleWorkout from './singleWorkout';
 import SingleWorkoutDelete from './singleWorkoutDelete';
 import AddWorkout from './addNewWorkout';
+import EditWorkout from './singleWorkoutEdit';
 
 class Workouts extends React.Component{
   constructor(props){
@@ -26,6 +27,7 @@ class Workouts extends React.Component{
     this.confirmDelete = this.confirmDelete.bind(this);
     this.toggleAddState = this.toggleAddState.bind(this);
     this.handleAddFormSubmit = this.handleAddFormSubmit.bind(this);
+    this.toggleEditState = this.toggleEditState.bind(this);
   }
 
   viewSingleWorkout(id){
@@ -68,16 +70,24 @@ class Workouts extends React.Component{
     })
   }
 
+  toggleEditState(bool){
+    this.setState({editingWorkout: bool})
+  }
+
   render(props){
     if(this.state.addingWorkout){
       return <AddWorkout 
                 toggleAddState={this.toggleAddState}
                 currentUser={this.props.currentUser}
                 handleAddFormSubmit={this.handleAddFormSubmit}
+                dispatc={this.props.dispatch}
               />
 
     } else if (this.state.editingWorkout) {
-      // return <EditWorkout currentWorkout={this.state.currentWorkout} />
+      return <EditWorkout
+                currentWorkout={this.state.currentWorkout}
+                toggleEditState={this.toggleEditState}
+              />
     
     
     } else if (this.state.deletingWorkout){
@@ -92,6 +102,7 @@ class Workouts extends React.Component{
                 currentWorkout={this.state.currentWorkout}
                 backToWorkoutList={this.backToWorkoutList}
                 toggleDeleteScreen={this.toggleDeleteScreen}
+                toggleEditState={this.toggleEditState}
               />
 
     } else {

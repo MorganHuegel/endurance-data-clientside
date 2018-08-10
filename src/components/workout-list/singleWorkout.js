@@ -38,7 +38,7 @@ export default function SingleWorkout(props){
 
         <button onClick={() => props.backToWorkoutList()}>Back to Workouts</button>
 
-        <button>Edit Workout</button>
+        <button onClick={ () => props.toggleEditState(true)}>Edit Workout</button>
 
         <button onClick={() => props.toggleDeleteScreen(true)}>Delete Workout</button>
     </div>

@@ -14,7 +14,6 @@ export const addWorkoutLocal = (workoutObj) => ({
 export const addWorkoutDatabase = (newWorkoutObj) => (dispatch) => {
   dispatch(changeUserLoading(true));
   const authToken = localStorage.getItem('authToken');
-  console.log('NEW WORKOUT OBJ', newWorkoutObj);
   return fetch(`${SERVER_URL}/workouts`, {
     method: 'POST',
     headers: {
@@ -44,11 +43,9 @@ export const addWorkoutDatabase = (newWorkoutObj) => (dispatch) => {
   })
   .then( ({ id }) => {
     newWorkoutObj.id = id;
-    console.log('ID',id);
     dispatch(addWorkoutLocal(newWorkoutObj));
   })
   .catch(err => {
-    console.log('ERR IN CATCH', err);
     dispatch(setWorkoutError(err.message));
   });
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function renderInputsFromPreferences(preferenceArray){
+export function renderInputsFromPreferences(preferenceArray, numDefaults=null, withUnitDefaults=null){
   return preferenceArray.map(field => {
     switch(field){
       case('totalDistance'):
