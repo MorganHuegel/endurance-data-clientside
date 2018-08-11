@@ -22,31 +22,22 @@ class Workouts extends React.Component{
       deletingWorkout: false,
       formOptions: []
     }
-
-    this.viewSingleWorkout = this.viewSingleWorkout.bind(this);
-    this.backToWorkoutList = this.backToWorkoutList.bind(this);
-    this.toggleDeleteScreen = this.toggleDeleteScreen.bind(this);
-    this.confirmDelete = this.confirmDelete.bind(this);
-    this.toggleAddState = this.toggleAddState.bind(this);
-    this.handleAddFormSubmit = this.handleAddFormSubmit.bind(this);
-    this.toggleEditState = this.toggleEditState.bind(this);
-    this.handleEditFormSubmit = this.handleEditFormSubmit.bind(this);
   }
 
-  viewSingleWorkout(id){
+  viewSingleWorkout = (id) => {
     const currentWorkout = this.props.currentUser.workouts.find(workout => workout.id === id);
     this.setState({currentWorkout, viewingWorkout: true});
   }
 
-  backToWorkoutList(){
+  backToWorkoutList = () => {
     this.setState({currentWorkout: null, viewingWorkout: false});
   }
 
-  toggleDeleteScreen(bool){
+  toggleDeleteScreen = (bool) => {
     this.setState({deletingWorkout: bool});
   }
 
-  confirmDelete(){
+  confirmDelete = () => {
     const workoutId = this.state.currentWorkout.id;
     this.setState({
       deletingWorkout: false, 
@@ -57,43 +48,55 @@ class Workouts extends React.Component{
     )
   }
 
-  toggleAddState(bool){
-    this.setState({addingWorkout: bool});
+  toggleAddState = (bool) => {
+    if(bool === false){
+      this.setState({addingWorkout: bool, formOptions: []});
+    } else {
+      this.setState({addingWorkout: bool});
+    }
   }
 
-  handleAddFormSubmit(workoutObj){
+  handleAddFormSubmit = (workoutObj) => {
     this.setState({
       addingWorkout: false,
       currentWorkout: null,
       editingWorkout: false,
       viewingWorkout: false,
-      deletingWorkout: false
+      deletingWorkout: false,
+      formOptions: []
     }, () => {   //callback action to add workout to database and redux state
       this.props.dispatch(addWorkoutDatabase(workoutObj));
     })
   }
 
-  toggleEditState(bool){
+  toggleEditState = (bool) => {
     this.setState({editingWorkout: bool})
   }
 
-  handleEditFormSubmit(workoutObj){
+  handleEditFormSubmit = (workoutObj) => {
     this.setState({
       addingWorkout: false,
       editingWorkout: false,
       viewingWorkout: true,
-      deletingWorkout: false
+      deletingWorkout: false,
+      formOptions: []
     }, () => {
       this.props.dispatch(editWorkoutDatabase(workoutObj))
     }
   )}
 
-  addFormOption = (fieldArray) => {
-    this.setState({formOptions: fieldArray})
-  }
-
-  deleteFormOption = () => {
-
+  changeFormOptions = (fieldArray, action) => {
+    if(fieldArray[0] === ''){ //if they try to add the empty string option
+      return;
+    } else if (action === 'ADD'){
+      return this.setState({formOptions: [
+        ...this.state.formOptions, 
+        ...fieldArray
+      ]})
+    } else if (action === 'DELETE'){
+      const filteredFormOptions = this.state.formOptions.filter(field => field !== fieldArray[0]);
+      return this.setState({formOptions: filteredFormOptions});
+    }
   }
 
   render(props){
@@ -104,7 +107,7 @@ class Workouts extends React.Component{
                 handleAddFormSubmit={this.handleAddFormSubmit}
                 dispatch={this.props.dispatch}
                 formOptions={this.state.formOptions}
-                addFormOption={this.addFormOption}
+                changeFormOptions={this.changeFormOptions}
               />
 
     } else if (this.state.editingWorkout) {
@@ -113,6 +116,7 @@ class Workouts extends React.Component{
                 toggleEditState={this.toggleEditState}
                 handleEditFormSubmit={this.handleEditFormSubmit}
                 formOptions={this.state.formOptions}
+                changeFormOptions={this.changeFormOptions}              
               />
     
     

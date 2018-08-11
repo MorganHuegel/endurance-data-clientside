@@ -2,24 +2,32 @@ import React from 'react';
 import moment from 'moment';
 import { renderInputs } from './renderInputFunction';
 import { setWorkoutError } from '../../actions/workoutsDelete';
+import formatDisplayName from '../../format-display-name';
 
-export default function SingleWorkoutEdit(props){
-  //all possible fields that need units appended
-  const fieldsWithUnit = [
-    'totalDistance', 'totalTime', 'averagePace', 
-    'maximumPace', 'totalElevation', 'waterDrank'
-  ];
 
-  function handleSubmit(event){
+//all possible fields that need units appended
+const fieldsWithUnit = [
+  'totalDistance', 'totalTime', 'averagePace', 
+  'maximumPace', 'totalElevation', 'waterDrank'
+];
+
+
+export default class SingleWorkoutEdit extends React.Component{
+  componentWillMount(){
+    this.props.changeFormOptions(Object.keys(this.props.currentWorkout), 'ADD');
+  }
+
+
+  handleSubmit = (event) => {
     event.preventDefault();
 
     //adds correct date, id, and userId to the workout object
     let workoutObj = Object.assign({}, {}, {
-      id: props.currentWorkout.id,
-      userId: props.currentWorkout.userId
+      id: this.props.currentWorkout.id,
+      userId: this.props.currentWorkout.userId
     });
 
-    Object.keys(props.currentWorkout).forEach(field => {
+    this.props.formOptions.forEach(field => {
       if(!event.target[field] || !event.target[field].value){ //Don't store empty fields
         return;
       }
@@ -37,31 +45,62 @@ export default function SingleWorkoutEdit(props){
     })
 
     if(!workoutObj.date){
-      return props.dispatch(setWorkoutError('Date must be included for this workout.'));
+      return this.props.dispatch(setWorkoutError('Date must be included for this workout.'));
     }
 
-    props.handleEditFormSubmit(workoutObj);
+    this.props.handleEditFormSubmit(workoutObj);
   }
 
 
-  const inputList = Object.keys(props.currentWorkout).map(field => {
-    if( fieldsWithUnit.includes(field) ){
-      return renderInputs(field, 'editForm', props.currentWorkout[field].amount, props.currentWorkout[field].unit);
-    } else {
-      return renderInputs(field, 'editForm', props.currentWorkout[field]);
-    }
-  })
-  
-  return(
-    <form id='editForm' onSubmit={e => handleSubmit(e)}>
-      <p>Edit workout from {moment(props.currentWorkout.date).format('MMMM Do, dddd')} ?</p>
-      <label htmlFor='date'>Workout Date:</label>
-      <input type='date' defaultValue={moment(props.currentWorkout.date).format('YYYY-MM-DD')} id='date' form='editForm'/>
+  render(){
+    const buttonFunction = (event) => this.props.changeFormOptions( [event.target.value], 'DELETE');
 
-      {inputList}
+    const inputList = this.props.formOptions.map(field => {
+      if(Object.keys(this.props.currentWorkout).includes(field)){ //if the currentWorkout has this field, set a default value for the input
+        if( fieldsWithUnit.includes(field) ){
+          return renderInputs(field, 'editForm', this.props.currentWorkout[field].amount, this.props.currentWorkout[field].unit, buttonFunction);
+        } else {
+          return renderInputs(field, 'editForm', this.props.currentWorkout[field], null, buttonFunction);
+        }
+      } else {
+        return renderInputs(field, 'editForm', null, null, buttonFunction);
+      }
+    })
+    
+    //filters all possible fields so that it makes a list of the fields that are not shown
+    const nonDisplayedFields = [
+      'totalDistance', 'totalTime', 'averagePace', 'maximumPace', 'averageWatts', 
+      'maximumWatts', 'totalElevation', 'averageHeartrate', 'maxHeartrate', 'tss', 
+      'minutesStretching', 'minutesFoamRollingMassage', 'minutesCore', 'injuryRating', 
+      'sorenessRating', 'stressRating', 'bodyWeight', 'dietRating', 'hoursOfSleep', 
+      'waterDrank', 'notes'
+    ].filter(field => !this.props.formOptions.includes(field));
 
-      <button type='submit'>Submit changes</button>
-      <button type='reset' onClick={() => props.toggleEditState(false)}>Cancel changes</button>
-    </form>
-  );
+    const dropboxOptions = nonDisplayedFields.map(field => {
+      const formattedName = formatDisplayName(field);
+      return (
+        <option value={field} key={field}>{formattedName}</option>
+      )
+    })
+
+    return(
+      <form id='editForm' onSubmit={e => this.handleSubmit(e)}>
+        <p>Edit workout from {moment(this.props.currentWorkout.date).format('MMMM Do, dddd')} ?</p>
+        <label htmlFor='date'>Workout Date:</label>
+        <input type='date' defaultValue={moment(this.props.currentWorkout.date).format('YYYY-MM-DD')} id='date' form='editForm'/>
+
+        {inputList}
+        <div className='addField'>
+          <label htmlFor='addFieldDropbox'>Add Field:</label>
+          <select onChange={e => this.props.changeFormOptions([e.target.value], 'ADD')}>
+            <option value=''></option>
+            {dropboxOptions}
+          </select>
+        </div>
+
+        <button type='submit'>Submit changes</button>
+        <button type='reset' onClick={() => this.props.toggleEditState(false)}>Cancel changes</button>
+      </form>
+    );
+  }
 };
