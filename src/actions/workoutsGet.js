@@ -31,6 +31,7 @@ export const getWorkouts = () => (dispatch) => {
     return response.json();
   })
   .then( newUser => {
+    console.log('NEW USER:',newUser);
     return dispatch(changeUserSuccess(newUser));
   })
   .catch(err => {
