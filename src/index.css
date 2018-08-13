@@ -1,7 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 20px;
   font-family: sans-serif;
+  background-color: rgb(168, 175, 170);
+}
+
+h1 {
+  font-size: 8.5vw;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
 }
 
 li {
@@ -13,16 +25,35 @@ ul {
   padding: 0;
 }
 
-.error-message {
-  color: red;
-}
-
-.navbar-link {
-  padding: 5px;
-}
-
-.show-more {
-  color: blue;
-  text-decoration: underline;
+header {
+  width: 100%;
   text-align: center;
+  background: radial-gradient(rgb(244, 96, 54) -50%, rgb(168, 175, 170));
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+header img {
+  max-width: 10%;
+}
+
+.logo.running {
+  float: left;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
+
+.logo.cycling {
+  float: right;
+}
+
+
+@media only screen and (min-width: 550px) {
+  h1 {
+  font-size: 46.5px;
+  }
 }

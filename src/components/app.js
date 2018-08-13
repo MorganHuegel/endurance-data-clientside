@@ -1,3 +1,6 @@
+import runningLogo from '../running-logo.png';
+import cyclingLogo from '../cycling-logo.png';
+
 import React from 'react';
 import LoginScreen from './loginScreen';
 import Dashboard from './dashboard';
@@ -28,7 +31,9 @@ class App extends React.Component {
     return (
       <div>
         <header role='banner'>
+          <img src={runningLogo} alt='Logo of runner' className='logo running'/>
           <h1>Endurance Data</h1>
+          <img src={cyclingLogo} alt='Logo of cyclist' className='logo cycling'/>
         </header>
 
         <main role='main'>
