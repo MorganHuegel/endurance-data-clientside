@@ -28,9 +28,9 @@ ul {
 header {
   width: 100%;
   text-align: center;
-  background: radial-gradient(rgb(244, 96, 54) -50%, rgb(168, 175, 170));
+  background: radial-gradient(rgb(244, 96, 54) -20%, rgb(168, 175, 170) 80%);
   max-width: 650px;
-  margin: 0 auto;
+  margin: 0 auto 20px;
 }
 
 header img {

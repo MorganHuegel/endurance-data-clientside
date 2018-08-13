@@ -1,5 +1,8 @@
 import runningLogo from '../running-logo.png';
 import cyclingLogo from '../cycling-logo.png';
+import '../stylesheets/index.css';
+import '../stylesheets/spinner.css';
+import '../stylesheets/loginScreen.css';
 
 import React from 'react';
 import LoginScreen from './loginScreen';
@@ -19,7 +22,12 @@ class App extends React.Component {
     let mainContent;
 
     if(this.props.loading === true){
-      mainContent = <Spinner name='wordpress' fadeIn='none' />
+      mainContent = (
+        <div className='spinner'>
+          <Spinner name='wordpress' fadeIn='none' />
+          <p>Loading...</p>
+        </div>
+      )
       
     } else if (!this.props.currentUser || this.props.registerError || this.props.loginError){
       mainContent = <LoginScreen registerError={this.props.registerError} loginError={this.props.loginError}/>

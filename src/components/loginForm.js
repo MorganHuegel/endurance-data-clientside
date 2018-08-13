@@ -64,13 +64,17 @@ class LoginForm extends React.Component{
         <p className='error-message'>{errorMessage}</p>
 
         <form className='login-form' id='login-form' onSubmit={e => this.onSubmit(e)}>
-          <label htmlFor='loginUsername'>Username: </label>
-          <input type='text' id='loginUsername' placeholder='username' required 
-          ref={this.loginUsername} />
+          <div>
+            <label htmlFor='loginUsername'>Username: </label>
+            <input type='text' id='loginUsername' placeholder='username' required 
+            ref={this.loginUsername} />
+          </div>
 
-          <label htmlFor='loginPassword'>Password: </label>
-          <input type='password' id='loginPassword' placeholder='password' required 
-          ref={this.loginPassword} />
+          <div>
+            <label htmlFor='loginPassword'>Password: </label>
+            <input type='password' id='loginPassword' placeholder='password' required 
+            ref={this.loginPassword} />
+          </div>
 
           <button type='submit'>Login</button>
 

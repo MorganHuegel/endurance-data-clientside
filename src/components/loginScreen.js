@@ -7,7 +7,7 @@ import RegisterForm from './registerForm';
 export default function LoginScreen(props){
 
   return (
-    <div>
+    <div className='login-screen'>
       <LoginForm loginError={props.loginError}/>
       <RegisterForm registerError={props.registerError}/>
     </div>

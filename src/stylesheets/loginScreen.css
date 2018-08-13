@@ -1,0 +1,106 @@
+.login-screen {
+  border: 1px solid rgb(244, 96, 54);
+  border-radius: 5%;
+  padding: 10px;
+}
+
+.login-screen h2 {
+  font-size: 5.5vw;
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(to right, rgba(254, 106, 64, 0.4), rgb(168, 175, 170));
+  border-radius: 5% 100% 100% 5%;
+  width: 50%;
+}
+
+.login-screen label {
+  font-size: 5vw;
+  display: block;
+  padding: 3%;
+}
+
+.login-screen form {
+  text-align: center;
+}
+
+.login-screen input {
+  display: block;
+  margin: 0 auto 6% auto;
+  font-size: 4vw;
+  padding: 3px;
+  border: 1px solid rgb(100, 100, 100);
+}
+
+.login-screen button {
+  margin-top: 10px;
+  padding: 3%;
+  font-size: 4vw;
+  background-color: rgb(100, 170, 255);
+  border-radius: 7%;
+}
+
+.login-container, .register-container {
+  padding: 2%;
+}
+
+.register-container h2 {
+  width: 100%;
+  margin-top: 60px;
+}
+
+.error-message {
+  color: rgb(20, 90, 175);
+  font-style: italic;
+  font-size: 16px;
+  text-align: center;
+}
+
+
+@media only screen and (min-width: 400px) {
+  .login-screen label {
+    font-size: 20px;
+    max-width: 48%;
+    display: inline-block;
+    margin-right: 5px;
+    text-align: right;
+  }
+  .login-screen input {
+    font-size: 15px;
+    max-width: 48%;
+    display: inline-block;
+    padding: 5px;
+  }
+  .error-message {
+    font-size: 18px;
+  }
+  
+}
+
+
+@media only screen and (min-width: 500px) {
+  .login-screen form {
+    text-align: left;
+  }
+  .login-screen h2 {
+    font-size: 27.5px;
+  }
+  .login-screen label {
+    width: auto;
+    padding: 10.5px;
+  }
+  .login-screen input {
+    margin: 0 auto 16px auto;
+    max-width: 200px;
+  }
+  .login-screen button {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: rgb(100, 170, 255);
+  }
+  .error-message {
+    font-size: 20px;
+    text-align: left;
+  }
+}
+

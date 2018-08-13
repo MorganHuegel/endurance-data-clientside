@@ -74,18 +74,26 @@ class RegisterForm extends React.Component{
 
         <form className='register-form' id='register-form' onSubmit={e => this.onSubmit(e)}>
 
-          <label htmlFor='registerUsername'>Username: </label>
-          <input type='text' id='registerUsername' placeholder='username' required
-            ref={this.registerUsername}/>
+          <div>
+            <label htmlFor='registerUsername'>Username: </label>
+            <input type='text' id='registerUsername' placeholder='username' required
+              ref={this.registerUsername}/>
+          </div>
 
-          <label htmlFor='registerPassword'>Password: </label>
-          <input type='password' id='registerPassword' placeholder='password' required/>
+          <div>
+            <label htmlFor='registerPassword'>Password: </label>
+            <input type='password' id='registerPassword' placeholder='password' required/>
+          </div>
 
-          <label htmlFor='registerConfirmPassword'>Confirm Password: </label>
-          <input type='password' id='registerConfirmPassword' placeholder='confirm password' required/>
+          <div>
+            <label htmlFor='registerConfirmPassword'>Confirm Password: </label>
+            <input type='password' id='registerConfirmPassword' placeholder='confirm password' required/>
+          </div>
 
-          <label htmlFor='registerEmail'>Email Address: </label>
-          <input type='email' id='registerEmail' placeholder='(optional)'/>
+          <div>
+            <label htmlFor='registerEmail'>Email Address: </label>
+            <input type='email' id='registerEmail' placeholder='(optional)'/>
+          </div>
 
           <button type='submit'>Begin Data Tracking!</button>
 
