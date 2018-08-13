@@ -1,0 +1,38 @@
+nav {
+  background-color: rgba(254, 106, 64, 0.4);
+  margin: 0 -20px 0 -20px;
+}
+
+.navbar-link {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  padding: 10px 0 10px 0;
+  text-decoration: none;
+  color: black;
+  font-size: 5vw;
+}
+
+.navbar-link.workouts, .navbar-link.data-analysis {
+  width: 38%;
+}
+
+.navbar-link.profile {
+  width: 24%;
+}
+
+.selectedNav {
+  border-top: 1px solid white;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  background-color: rgba(224, 76, 34, 0.4);
+  color: white;
+}
+
+@media only screen and (min-width: 400px) {
+  .navbar-link.workouts, .navbar-link.profile, .navbar-link.data-analysis {
+    margin: 0;
+    width: 33.33%;
+    font-size: 20px;
+  }
+}

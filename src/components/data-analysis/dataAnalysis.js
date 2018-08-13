@@ -2,6 +2,9 @@ import React from 'react';
 
 export default function DataAnalysis(){
   return(
-    <h2>Data Analysis</h2>
+    <div>
+      <h2>Data Analysis</h2>
+      <p>Section coming soon...</p>
+    </div>
   );
 }

@@ -1,3 +1,5 @@
+import '../../stylesheets/workouts/workouts.css';
+
 import React from 'react';
 import { connect } from 'react-redux';
 

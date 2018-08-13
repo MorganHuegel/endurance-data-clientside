@@ -8,8 +8,8 @@
   font-size: 5.5vw;
   padding: 0;
   margin: 0;
-  background: linear-gradient(to right, rgba(254, 106, 64, 0.4), rgb(168, 175, 170));
-  border-radius: 5% 100% 100% 5%;
+  background: linear-gradient(to right, rgba(254, 106, 64, 0.4), rgb(208, 215, 210));
+  border-radius: 10% 100% 100% 10%;
   width: 50%;
 }
 
@@ -37,6 +37,7 @@
   font-size: 4vw;
   background-color: rgb(100, 170, 255);
   border-radius: 7%;
+  border: 1px solid rgb(130, 130, 130);
 }
 
 .login-container, .register-container {

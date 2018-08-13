@@ -1,5 +1,7 @@
+import '../stylesheets/dashboard.css';
+
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink, Redirect, Switch } from 'react-router-dom';
 
 import Workouts from './workout-list/workouts';
 import DataAnalysis from './data-analysis/dataAnalysis';
@@ -25,9 +27,9 @@ export default function Dashboard(props){
     <Router>
       <div>
         <nav>
-          <Link to='/workouts' className='navbar-link'>Workout Logs</Link>
-          <Link to='/analysis' className='navbar-link'>Data Analysis</Link>
-          <Link to='/profile' className='navbar-link'>Profile</Link>
+          <NavLink to='/workouts' className='navbar-link workouts' activeClassName='selectedNav'>Workout Logs</NavLink>
+          <NavLink to='/analysis' className='navbar-link data-analysis' activeClassName='selectedNav'>Data Analysis</NavLink>
+          <NavLink to='/profile' className='navbar-link profile' activeClassName='selectedNav'>Profile</NavLink>
         </nav>
 
         <p className='error-message'>{props.workoutError}</p>
