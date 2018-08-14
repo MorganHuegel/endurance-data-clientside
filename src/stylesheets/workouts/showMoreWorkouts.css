@@ -1,0 +1,28 @@
+.show-more button {
+  border: none;
+  background-color: white;
+  color: blue;
+}
+
+.show-more {
+  text-align: center;
+  padding: 4px;
+}
+
+.show-old-workouts h3 {
+  font-size: 5vw;
+  margin-bottom: 0;
+}
+
+.hide-workout-list {
+  border: none;
+  background-color: white;
+  color: blue;
+  padding: 8px;
+}
+
+@media only screen and (min-width: 400px) {
+  .show-old-workouts h3 {
+    font-size: 20px;
+  }
+}

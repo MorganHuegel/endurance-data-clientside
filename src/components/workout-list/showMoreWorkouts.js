@@ -1,3 +1,5 @@
+import '../../stylesheets/workouts/showMoreWorkouts.css';
+
 import React from 'react';
 import moment from 'moment';
 
@@ -56,17 +58,17 @@ export default class ShowMoreWorkouts extends React.Component {
         // makes a list of all workouts within 30 days of the date on original button
         const showMoreList = withinThirtyDays.map(workout => {
           return (
-            <li key={workout.id} id={workout.id}>
+            <li key={workout.id} id={workout.id} className='displayed-workout-list'>
               <a href={`#${workout.id}`} workoutid={workout.id}>{moment(workout.date).format('MMMM Do, dddd')}</a>
             </li>
           )
         });
 
         return (
-          <div key={date}>
+          <div key={date} className='show-old-workouts'>
             <h3>
               {date}
-              <button onClick={e => this.handleHideSectionClick(date)}>Hide</button>
+              <button onClick={e => this.handleHideSectionClick(date)} className='hide-workout-list'>Hide</button>
             </h3>
             <ul onClick={e => this.handleClickOnWorkout(e)}>
               {showMoreList}

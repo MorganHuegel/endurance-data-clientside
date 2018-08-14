@@ -29,7 +29,7 @@ export default function WorkoutList (props){
     //only display workouts for the last 30 days (1000 * 60 * 60 * 24 * 30)
     if(currentTime - workoutDate <= 2592000000){
       return (
-        <li key={workout.id} id={workout.id} className='recent-workout-list'>
+        <li key={workout.id} id={workout.id} className='displayed-workout-list'>
           <a href={`#${workout.id}`} workoutid={workout.id}>{moment(workoutDate).format('MMMM Do, dddd')}</a>
         </li>
       )
