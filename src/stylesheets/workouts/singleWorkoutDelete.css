@@ -1,0 +1,55 @@
+
+/* Formats buttons */
+.single-workout-delete .button {
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 5px;
+  padding: 8px;
+  color: white;
+  font-size: 3.5vw;
+}
+
+.single-workout-delete .button.delete {
+  background-color: rgb(100, 0, 0);
+  margin-right: 40px;
+}
+.single-workout-delete .button.delete:hover, .single-workout-delete .button.delete:focus {
+  background-color: rgb(130, 30, 30);
+}
+
+.single-workout-delete .button.back {
+  background-color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+.single-workout-delete .button.back:hover, .single-workout-delete .button.back:focus {
+  background-color: rgb(50, 50, 50);
+  cursor: pointer;
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 320px;
+}
+
+
+/* Formats paragraph text */
+.single-workout-delete p {
+  font-size: 4vw;
+}
+
+.single-workout-delete .date {
+  font-style: italic;
+  font-weight: bold;
+}
+
+
+/* Stop font size from increasing once screen is at 400px */
+@media only screen and (min-width: 400px) {
+  .single-workout-delete p {
+    font-size: 16px;
+  }
+  .single-workout-delete .button {
+    font-size: 14px;
+  }
+}

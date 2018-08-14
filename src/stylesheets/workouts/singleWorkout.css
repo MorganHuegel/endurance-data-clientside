@@ -26,6 +26,8 @@
   border-radius: 5px;
 }
 
+
+/* Styling Buttons */
 .single-workout .button {
   border: 1px solid rgb(200, 200, 200);
   border-radius: 5px;
@@ -35,7 +37,6 @@
   display: block;
   margin-bottom: 20px;
 }
-
 .single-workout .button.edit {
   background-color: rgb(50, 50, 150);
 }
@@ -46,6 +47,22 @@
   background-color: rgb(100, 0, 0);
 }
 
+/* Styling Buttons when mouse is hovered */
+.single-workout .button.edit:hover, .single-workout .button.edit:focus {
+  background-color: rgb(80, 80, 180);
+  cursor: pointer;
+}
+.single-workout .button.back:hover, .single-workout .button.back:focus {
+  background-color: rgb(50, 50, 50);
+  cursor: pointer;
+}
+.single-workout .button.delete:hover, .single-workout .button.delete:focus {
+  background-color: rgb(130, 30, 30);
+  cursor: pointer;
+}
+
+
+/* Stops font from growing when screen is 400px */
 @media only screen and (min-width: 400px) {
   .single-workout h2 {
     font-size: 24px;
