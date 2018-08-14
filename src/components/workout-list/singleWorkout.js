@@ -1,3 +1,5 @@
+import '../../stylesheets/workouts/singleWorkout.css';
+
 import React from 'react';
 import { formatWorkoutDisplay } from '../../format-workout';
 
@@ -20,7 +22,7 @@ export default function SingleWorkout(props){
     if(field !== 'date') {
       return (
         <li key={field}>
-          <p>{field}: {serializedWorkout[field]}</p>
+          <p><span className='display-field'>{field}</span>: <span className='display-value'>{serializedWorkout[field]}</span></p>
         </li>
       )
     } else {
@@ -30,17 +32,15 @@ export default function SingleWorkout(props){
 
 
   return (
-    <div>
+    <div className='single-workout'>
       <h2>{serializedWorkout.date}</h2>
       <ul>
         {workoutDetails}
       </ul>
 
-        <button onClick={() => props.backToWorkoutList()}>Back to Workouts</button>
-
-        <button onClick={ () => props.toggleEditState(true)}>Edit Workout</button>
-
-        <button onClick={() => props.toggleDeleteScreen(true)}>Delete Workout</button>
+        <button onClick={ () => props.toggleEditState(true)} className='edit button'>Edit Workout</button>
+        <button onClick={() => props.backToWorkoutList()} className='back button'>Back to Workouts</button>
+        <button onClick={() => props.toggleDeleteScreen(true)} className='delete button'>Delete Workout</button>
     </div>
 
   )

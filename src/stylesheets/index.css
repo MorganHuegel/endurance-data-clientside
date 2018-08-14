@@ -6,7 +6,7 @@ body {
   margin: 0;
   padding: 20px;
   font-family: sans-serif;
-  background-color: rgb(208, 215, 210);
+  background-color: rgb(48, 65, 60);
 }
 
 h1 {
@@ -14,6 +14,8 @@ h1 {
   padding: 0;
   margin: 0;
   display: inline-block;
+  max-width: 80%;
+  vertical-align: middle;
 }
 
 li {
@@ -28,27 +30,24 @@ ul {
 header {
   width: 100%;
   text-align: center;
-  background: radial-gradient(rgb(244, 96, 54) -20%, rgb(208, 215, 210) 80%);
+  background: radial-gradient(rgb(244, 96, 54), rgb(255, 255, 255) 60%, rgb(48, 65, 60) 80%);
   max-width: 650px;
   margin: 0 auto 20px;
+  padding: 10px;
 }
 
 header img {
   max-width: 10%;
+  vertical-align: middle;
 }
 
 .logo.running {
-  float: left;
   -moz-transform: scaleX(-1);
   -o-transform: scaleX(-1);
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
   filter: FlipH;
   -ms-filter: "FlipH";
-}
-
-.logo.cycling {
-  float: right;
 }
 
 a:hover, a:focus {

@@ -1,5 +1,5 @@
 nav {
-  background-color: rgba(254, 106, 64, 0.4);
+  background-color: rgb(254, 106, 64);
   margin: 0 -20px 0 -20px;
 }
 
@@ -29,7 +29,7 @@ nav div {
   border-top: 1px solid white;
   border-left: 1px solid white;
   border-right: 1px solid white;
-  background-color: rgba(224, 76, 34, 0.4);
+  background-color: rgb(224, 76, 34);
   color: white;
   text-decoration: underline solid white;
 }
