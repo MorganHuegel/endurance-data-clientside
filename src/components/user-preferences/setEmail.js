@@ -1,7 +1,10 @@
+import '../../stylesheets/user-preferences/setEmail.css';
+
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { updateUserInfo } from '../../actions/userUpdate';
+import { setWorkoutError } from '../../actions/workoutsDelete';
 
 class SetEmail extends React.Component {
   constructor(props){
@@ -18,9 +21,13 @@ class SetEmail extends React.Component {
   handleSubmit(event){
     event.preventDefault();
     const newEmail = event.target.newEmail.value;
-    this.setState({submitted: true}, () => {
-      this.props.dispatch(updateUserInfo({email: newEmail}));
-    })
+    if(newEmail.trim() !== newEmail){
+      this.props.dispatch(setWorkoutError('Email address should not contain whitespace'));
+    } else {
+      this.setState({submitted: true}, () => {
+        this.props.dispatch(updateUserInfo({email: newEmail}));
+      })
+    }
   }
 
   render(props){  
@@ -32,22 +39,23 @@ class SetEmail extends React.Component {
     const currentEmail = this.props.currentUser.email;
 
     if(currentEmail){
-      message = <p>Your current email address is {currentEmail}.</p>
+      message = <p>Your current email address is <span className='current-email'>{currentEmail} .</span></p>
     } else {
       message = <p>You currently have no email address on record.</p>
     }
 
     return (
-      <div>
-        <h3>Change email</h3>
-        {this.props.workoutError}
+      <div className='set-email'>
+        <h2>Change email</h2>
 
         <form id='changeEmail' name='changeEmail' onSubmit={e => this.handleSubmit(e)}>
           {message}
           <label htmlFor='newEmail'>Enter email address to update our records:</label>
-          <input type='email' id='newEmail' placeholder='e.g. foo@bar.com' required/>
+          <div className='input-row'>
+            <input type='email' id='newEmail' placeholder='e.g. foo@bar.com' required/>
+          </div>
 
-          <div>
+          <div className='button-container'>
             <button type='submit'>Update Email</button>
             <Link to='/profile'>
               <button type='reset'>Nevermind...</button>

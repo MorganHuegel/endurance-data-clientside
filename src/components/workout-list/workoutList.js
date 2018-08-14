@@ -45,14 +45,37 @@ export default function WorkoutList (props){
     }
   });
 
+  let mainContent;
+  if(workoutList.length === 0) {
+    mainContent = (
+      <div>
+        <ol className='instructions'>To begin:
+          <li><span className='step-number'>Step 1</span>: Go workout!</li>
+          <li><span className='step-number'>Step 2</span>: Click on "LOG NEW WORKOUT"</li>
+          <li><span className='step-number'>Step 3</span>: Enter your data.</li>
+          <li><span className='step-number'>Step 4</span>: Track your results.</li>
+        </ol>
+        <p className='instructions'>Workout data can be edited or deleted at any time, so feel free to try it out now!</p>
+      </div>
+    );
+  } else {
+    mainContent = (
+      <div>
+        <h2>Most Recent</h2>
+        <ul onClick={e => handleClickOnWorkout(e)}>
+          {workoutList}
+        </ul>
+      </div>
+    )
+  }
+
 
   return(
     <div className='workoutList'>
       <button onClick={() => props.toggleAddState(true)} className='add-workout-button'>Log New Workout</button>
-      <h2>Most Recent</h2>
-      <ul onClick={e => handleClickOnWorkout(e)}>
-        {workoutList}
-      </ul>
+      
+      {mainContent}
+
       <ShowMoreWorkouts 
       nonDisplayedDates={nonDisplayedDates} 
       currentUser={props.currentUser}

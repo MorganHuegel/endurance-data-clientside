@@ -35,6 +35,31 @@ li.displayed-workout-list {
 }
 
 
+/* Styles instructions if user has no workouts logged yet */
+.workoutList .instructions {
+  font-size: 5vw;
+  font-weight: bold;
+  margin: 0;
+  padding: 20px 0 0 0;
+  text-align: left;
+}
+.workoutList .instructions li {
+  font-size: 4.5vw;
+  font-weight: normal;
+  font-style: italic;
+  padding: 10px 0 10px 10px;
+}
+.workoutList .instructions .step-number {
+  text-decoration: underline;
+}
+
+.workoutList p.instructions {
+  font-weight: normal;
+  font-style: italic;
+  font-size: 5vw;
+}
+
+
 @media only screen and (min-width: 400px) {
   .add-workout-button {
     font-size: 18px;
@@ -47,5 +72,15 @@ li.displayed-workout-list {
 
   .displayed-workout-list a {
     font-size: 18px;
+  }
+
+  .workoutList .instructions {
+    font-size: 20px;
+  }
+  .workoutList .instructions li {
+    font-size: 18px;
+  }
+  .workoutList p.instructions {
+    font-size: 20px;
   }
 }
