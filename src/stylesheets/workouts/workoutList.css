@@ -1,0 +1,45 @@
+.add-workout-button {
+  width: 100%;
+  padding: 12px 0 12px 0;
+  font-size: 5vw;
+  background-color: rgb(50, 50, 150);
+  color: white;
+  border: 2px solid rgb(100, 100, 100);
+  border-radius: 10px;
+}
+
+.workoutList h2 {
+  font-size: 6vw;
+}
+
+li.recent-workout-list {
+  padding: 10px 0;
+  border-top: 1px dotted rgb(200, 200, 200);
+  border-bottom: 1px dotted rgb(200, 200, 200);
+}
+
+.recent-workout-list a {
+  text-decoration: none;
+  background: linear-gradient(to right, rgba(254, 106, 64, 0.4), rgba(255, 255, 255));
+  padding: 3px;
+  font-size: 5vw;
+  color: rgb(50, 50, 150);
+}
+
+
+@media only screen and (min-width: 400px) {
+  .add-workout-button {
+    font-size: 20px;
+    width: 300px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .workoutList h2 {
+    font-size: 24px;
+  }
+
+  .recent-workout-list a {
+    font-size: 20px;
+  }
+}

@@ -1,5 +1,5 @@
-import runningLogo from '../running-logo.png';
-import cyclingLogo from '../cycling-logo.png';
+import runningLogo from '../images/running-logo.png';
+import cyclingLogo from '../images/cycling-logo.png';
 import '../stylesheets/index.css';
 import '../stylesheets/spinner.css';
 import '../stylesheets/loginScreen.css';

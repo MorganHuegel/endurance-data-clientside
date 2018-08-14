@@ -1,4 +1,4 @@
-import '../../stylesheets/workouts/workouts.css';
+import '../../stylesheets/workouts/workoutList.css';
 
 import React from 'react';
 import { connect } from 'react-redux';

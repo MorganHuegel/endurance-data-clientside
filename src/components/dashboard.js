@@ -27,24 +27,28 @@ export default function Dashboard(props){
     <Router>
       <div>
         <nav>
-          <NavLink to='/workouts' className='navbar-link workouts' activeClassName='selectedNav'>Workout Logs</NavLink>
-          <NavLink to='/analysis' className='navbar-link data-analysis' activeClassName='selectedNav'>Data Analysis</NavLink>
-          <NavLink to='/profile' className='navbar-link profile' activeClassName='selectedNav'>Profile</NavLink>
+          <div>
+            <NavLink to='/workouts' className='navbar-link workouts' activeClassName='selectedNav'>Workout-Logs</NavLink>
+            <NavLink to='/analysis' className='navbar-link data-analysis' activeClassName='selectedNav'>Data-Analysis</NavLink>
+            <NavLink to='/profile' className='navbar-link profile' activeClassName='selectedNav'>Profile</NavLink>
+          </div>
         </nav>
 
-        <p className='error-message'>{props.workoutError}</p>
+        <p className='error-message dashboard'>{props.workoutError}</p>
 
-        <Switch>
-          <Route exact path='/workouts' component={Workouts}/>
-          <Route exact path='/analysis' component={DataAnalysis}/>
-          <Route exact path='/profile' component={Profile}/>
-          <Route exact path='/profile/preferences' component={SetPreferences} />
-          <Route exact path='/profile/email' component={SetEmail} />
-          <Route exact path='/profile/username' component={SetUsername} />
-          <Route exact path='/profile/password' component={SetPassword} />
-          <Route exact path='/profile/logout' component={ConfirmLogout} />
-          <Redirect from='/' to='/workouts'/>
-        </Switch>
+        <div className='dashboard-content'>
+          <Switch>
+            <Route exact path='/workouts' component={Workouts}/>
+            <Route exact path='/analysis' component={DataAnalysis}/>
+            <Route exact path='/profile' component={Profile}/>
+            <Route exact path='/profile/preferences' component={SetPreferences} />
+            <Route exact path='/profile/email' component={SetEmail} />
+            <Route exact path='/profile/username' component={SetUsername} />
+            <Route exact path='/profile/password' component={SetPassword} />
+            <Route exact path='/profile/logout' component={ConfirmLogout} />
+            <Redirect from='/' to='/workouts'/>
+          </Switch>
+        </div>
 
       </div>
     </Router>
