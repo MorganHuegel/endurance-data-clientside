@@ -1,11 +1,18 @@
 .add-workout-button {
-  width: 100%;
+  display: block;
+  margin: 0 auto;
+  width: 80%;
   padding: 12px 0 12px 0;
-  font-size: 4.7vw;
+  font-size: 4.5vw;
   background-color: rgb(50, 50, 150);
   color: white;
   border: 2px solid rgb(100, 100, 100);
   border-radius: 10px;
+}
+
+.add-workout-button:hover, .add-workout-button:focus {
+  background-color: rgb(65, 65, 165);
+  cursor: pointer;
 }
 
 .workoutList h2 {
@@ -29,10 +36,8 @@ li.displayed-workout-list {
 
 @media only screen and (min-width: 400px) {
   .add-workout-button {
-    font-size: 19px;
-    width: 300px;
-    display: block;
-    margin: 0 auto;
+    font-size: 18px;
+    width: 250px;
   }
 
   .workoutList h2 {

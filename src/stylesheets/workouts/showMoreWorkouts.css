@@ -4,6 +4,11 @@
   color: blue;
 }
 
+.show-more button:focus, .show-more button:hover, .hide-workout-list:hover, .hide-workout-list:focus {
+  cursor: pointer;
+  font-weight: bold;
+}
+
 .show-more {
   text-align: center;
   padding: 4px;

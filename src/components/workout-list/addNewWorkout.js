@@ -1,3 +1,5 @@
+import '../../stylesheets/workouts/addNewWorkout.css';
+
 import React from 'react';
 import moment from 'moment';
 import { renderInputs } from './renderInputFunction';
@@ -68,14 +70,19 @@ export default class AddWorkout extends React.Component{
     let currentDate = moment().format('YYYY-MM-DD');
 
     return (
-      <div className='lightbox'>
-        <h3>New Workout</h3>
+      <div className='add-workout'>
+        <h2>New Workout</h2>
         <form id='addForm' onSubmit={e => this.handleSubmit(e)}>
-          <label htmlFor='date'>Workout Date:</label>
-          <input type='date' id='date' defaultValue={currentDate} required/>
+          <div className='form-field date'>
+            <label htmlFor='date'>Workout Date:</label>
+            <div className='input-row'>
+              <input type='date' id='date' defaultValue={currentDate} required/>
+            </div>
+          </div>
+
           {inputFields}
 
-           <div className='addField'>
+           <div className='add-field'>
             <label htmlFor='addFieldDropbox'>Add Field:</label>
             <select onChange={e => this.props.changeFormOptions([e.target.value], 'ADD')}>
               <option value=''></option>

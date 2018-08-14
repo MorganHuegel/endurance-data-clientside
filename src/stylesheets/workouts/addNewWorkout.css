@@ -1,0 +1,119 @@
+.add-workout h2 {
+  margin: 0;
+  font-size: 6vw;
+}
+
+.add-workout .form-field {
+  margin: 15px 0;
+  padding: 0 0 5px 0;
+  text-align: center;
+  background-color: rgb(255, 205, 188);
+}
+
+.add-workout .form-field.date {
+  padding: 7px 0;
+}
+
+.add-workout label {
+  margin-bottom: 8px;
+  font-size: 4vw;
+}
+
+.add-workout .input-row {
+  padding: 5px;
+}
+
+.add-workout select {
+  margin-left: 15px;
+  background-color: rgb(255, 243, 243);
+}
+
+.add-workout input {
+  background-color: rgb(255, 243, 243);
+}
+.add-workout input[type=number]{
+  width: 80px;
+}
+.add-workout textarea {
+  width: 90%;
+}
+
+.add-workout button[type=submit] {
+  background-color: rgb(50, 50, 150);
+  color: white;
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 5px;
+  padding: 8px;
+  margin-right: 20px;
+  font-size: 3.5vw;
+}
+.add-workout button[type=submit]:hover, .add-workout button[type=submit]:focus {
+  background-color: rgb(65, 65, 165);
+  cursor: pointer;
+}
+
+
+.add-workout button[type=reset] {
+  background-color: rgb(130, 0, 0);
+  color: white;
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 5px;
+  padding: 8px;
+  margin-right: 20px;
+  font-size: 3.5vw;
+}
+.add-workout button[type=reset]:hover, .add-workout button[type=reset]:focus {
+  background-color: rgb(155, 25, 25);
+  cursor: pointer;
+}
+
+
+
+.add-workout .add-field {
+  text-align: center;
+  padding: 30px 10px;
+}
+.add-workout .add-field select {
+  width: 120px;
+}
+
+.add-workout .deleteFieldButton {
+  font-size: 5vw;
+  font-family: 'Permanent Marker', cursive;
+  color: rgb(255, 0, 0);
+  border: none;
+  margin-right: 5px;
+  background-color: rgb(255, 205, 188);
+}
+.add-workout .deleteFieldButton:hover, .add-workout .deleteFieldButton:focus {
+  cursor: pointer;
+  background-color: rgb(255, 175, 158);
+}
+
+.add-workout .sidenote {
+  font-style: italic;
+  font-size: 3.5vw;
+  padding: 0 0 0 5px;
+}
+
+@media only screen and (min-width: 400px) {
+  .add-workout h2 {
+    font-size: 24px;
+  }
+
+  .add-workout .deleteFieldButton {
+    font-size: 20px;
+  }
+
+  .add-workout label {
+    font-size: 16px;
+  }
+
+  .add-workout .sidenote {
+    font-size: 14px;
+  }
+
+  .add-workout button[type=submit], .add-workout button[type=reset] {
+    font-size: 14px;
+  }
+}
