@@ -39,8 +39,8 @@ export default function SingleWorkout(props){
       </ul>
 
         <button onClick={ () => props.toggleEditState(true)} className='edit button'>Edit Workout</button>
-        <button onClick={() => props.backToWorkoutList()} className='back button'>Back to Workouts</button>
         <button onClick={() => props.toggleDeleteScreen(true)} className='delete button'>Delete Workout</button>
+        <button onClick={() => props.backToWorkoutList()} className='back button'>Back to Workouts</button>
     </div>
 
   )

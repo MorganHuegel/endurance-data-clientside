@@ -1,0 +1,122 @@
+/* Format the paragraph at the top */
+.display-date {
+  font-style: italic;
+}
+#editForm p {
+  margin: 0 0 20px 0;
+  font-size: 4.5vw;
+}
+
+
+/* Styles each field in the form */
+.edit-workout .form-field {
+  margin: 15px 0;
+  padding: 0 0 5px 0;
+  text-align: center;
+  background-color: rgb(255, 205, 188);
+  border-radius: 3px;
+}
+.edit-workout .form-field.date {
+  padding: 7px 0;
+}
+.edit-workout label {
+  margin-bottom: 8px;
+  font-size: 4vw;
+}
+.edit-workout .input-row {
+  padding: 5px;
+}
+.edit-workout input {
+  background-color: rgb(255, 243, 243);
+}
+.edit-workout select {
+  margin-left: 15px;
+  background-color: rgb(255, 243, 243);
+}
+.edit-workout input[type=number]{
+  width: 80px;
+}
+.edit-workout textarea {
+  width: 90%;
+}
+.edit-workout .add-field {
+  text-align: center;
+  padding: 20px 10px 30px 10px;
+}
+.edit-workout .add-field select {
+  width: 120px;
+}
+.edit-workout .sidenote {
+  font-style: italic;
+  font-size: 3.5vw;
+  padding: 0 0 0 5px;
+}
+
+
+
+/* Styles Buttons (gives the flexbox option) */
+.edit-workout .deleteFieldButton {
+  font-size: 5vw;
+  font-family: 'Permanent Marker', cursive;
+  color: rgb(255, 0, 0);
+  border: none;
+  margin-right: 5px;
+  background-color: rgb(255, 205, 188);
+}
+.edit-workout .deleteFieldButton:hover, .edit-workout .deleteFieldButton:focus {
+  cursor: pointer;
+  background-color: rgb(255, 175, 158);
+}
+
+.edit-workout button[type=submit] {
+  background-color: rgb(50, 50, 150);
+  color: white;
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 5px;
+  padding: 8px;
+  margin-right: 17px;
+  margin-bottom: 10px;
+  font-size: 3.5vw;
+}
+.edit-workout button[type=submit]:hover, .edit-workout button[type=submit]:focus {
+  background-color: rgb(65, 65, 165);
+  cursor: pointer;
+}
+
+.edit-workout button[type=reset] {
+  background-color: rgb(130, 0, 0);
+  color: white;
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 5px;
+  padding: 8px;
+  font-size: 3.5vw;
+}
+.edit-workout button[type=reset]:hover, .edit-workout button[type=reset]:focus {
+  background-color: rgb(155, 25, 25);
+  cursor: pointer;
+}
+
+
+
+/* Stop font size increasing when the screen is over 400px */
+@media only screen and (min-width: 400px) {
+  #editForm p {
+    font-size: 18px;
+  }
+
+  .edit-workout .deleteFieldButton {
+    font-size: 20px;
+  }
+
+  .edit-workout label {
+    font-size: 16px;
+  }
+
+  .edit-workout .sidenote {
+    font-size: 14px;
+  }
+
+  .edit-workout button[type=submit], .edit-workout button[type=reset] {
+    font-size: 14px;
+  }
+}

@@ -72,7 +72,10 @@ class Workouts extends React.Component{
   }
 
   toggleEditState = (bool) => {
-    this.setState({editingWorkout: bool})
+    this.setState({
+      editingWorkout: bool,
+      formOptions: []
+    })
   }
 
   handleEditFormSubmit = (workoutObj) => {

@@ -1,3 +1,5 @@
+import '../../stylesheets/workouts/singleWorkoutEdit.css';
+
 import React from 'react';
 import moment from 'moment';
 import { renderInputs } from './renderInputFunction';
@@ -85,21 +87,30 @@ export default class SingleWorkoutEdit extends React.Component{
 
     return(
       <form id='editForm' onSubmit={e => this.handleSubmit(e)}>
-        <p>Edit workout from {moment(this.props.currentWorkout.date).format('MMMM Do, dddd')} ?</p>
-        <label htmlFor='date'>Workout Date:</label>
-        <input type='date' defaultValue={moment(this.props.currentWorkout.date).format('YYYY-MM-DD')} id='date' form='editForm'/>
+        <p>Edit workout from <span className='display-date'>{moment(this.props.currentWorkout.date).format('MMMM Do, dddd')}</span> ?</p>
+        <div className='edit-workout'>
+          <div className='form-field date'>
+            <label htmlFor='date'>Workout Date:</label>
+            <div className='input-row'>
+              <input type='date' defaultValue={moment(this.props.currentWorkout.date).format('YYYY-MM-DD')} id='date' form='editForm'/>
+            </div>
+          </div>
 
-        {inputList}
-        <div className='addField'>
-          <label htmlFor='addFieldDropbox'>Add Field:</label>
-          <select onChange={e => this.props.changeFormOptions([e.target.value], 'ADD')}>
-            <option value=''></option>
-            {dropboxOptions}
-          </select>
+          {inputList}
+          
+          <div className='add-field'>
+            <label htmlFor='addFieldDropbox'>Add Field:</label>
+            <select onChange={e => this.props.changeFormOptions([e.target.value], 'ADD')}>
+              <option value=''></option>
+              {dropboxOptions}
+            </select>
+          </div>
+
+          <div className='buttons-container'>
+            <button type='submit'>Submit changes</button>
+            <button type='reset' onClick={() => this.props.toggleEditState(false)}>Cancel changes</button>
+          </div>
         </div>
-
-        <button type='submit'>Submit changes</button>
-        <button type='reset' onClick={() => this.props.toggleEditState(false)}>Cancel changes</button>
       </form>
     );
   }
