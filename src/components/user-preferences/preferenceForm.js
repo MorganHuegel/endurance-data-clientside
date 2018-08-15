@@ -21,7 +21,7 @@ export default class PreferenceForm extends React.Component {
     const checkboxValue = event.target.value;
 
     if ( !this.state.selectedFields.find(field => field === checkboxValue) ) {
-      this.state.selectedFields.push(checkboxValue);
+      this.setState({selectedFields: [...this.state.selectedFields, checkboxValue]});
     } else {
       this.setState({selectedFields: this.state.selectedFields.filter(field => field !== checkboxValue)});
     }
@@ -44,6 +44,12 @@ export default class PreferenceForm extends React.Component {
 
 
   render(props){
+    let nevermindButton = '';
+
+    if(this.props.nevermindButton){
+      nevermindButton = <button type='button' className='back' onClick={e => this.setState({submitted: true})}>Nevermind...</button>
+    }
+
   
     if(this.state.submitted){
       return <Redirect to={this.props.onSubmitPath} />
@@ -56,7 +62,8 @@ export default class PreferenceForm extends React.Component {
         name={fieldset.name} 
         displayName={fieldset.displayName}
         inputs={fieldset.inputs}
-        handleCheck={this.handleCheck}  />
+        handleCheck={this.handleCheck}
+        selectedFields={this.state.selectedFields}  />
     })
 
     return (
@@ -67,7 +74,7 @@ export default class PreferenceForm extends React.Component {
 
         <button type='submit'>{this.props.submitButtonMessage}</button>
         <button type='reset' onClick={() => this.setState({selectedFields: []})} >Clear Form</button>
-        {this.props.nevermindButton}
+        {nevermindButton}
       </form>
     )
 
@@ -80,7 +87,7 @@ export default class PreferenceForm extends React.Component {
 const data = [
   {
     name: 'workoutDetails',
-    displayName: 'Workout Details:',
+    displayName: 'Workout Details',
     inputs: [
       {value: 'totalDistance', displayedValue:'Total Distance', sidenote:''},
       {value: 'totalTime', displayedValue:'Total Time', sidenote:''},
@@ -96,7 +103,7 @@ const data = [
   },
   {
     name: 'injuryDetails',
-    displayName: 'Injury-Prevention Details:',
+    displayName: 'Injury-Prevention Details',
     inputs: [
       {value: 'minutesStretching', displayedValue:'Time Stretching', sidenote:'(min)'},
       {value: 'minutesFoamRollingMassage', displayedValue:'Time FoamRolling / Massage', sidenote:'(min)'},
@@ -107,7 +114,7 @@ const data = [
   },
   {
     name: 'generalDetails',
-    displayName: 'General Details:',
+    displayName: 'General Details',
     inputs: [
       {value: 'stressRating', displayedValue:'Stress Rating', sidenote:'(1-10)'},
       {value: 'bodyWeight', displayedValue: 'Body Weight', sidenote:''},

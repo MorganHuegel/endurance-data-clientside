@@ -36,9 +36,11 @@
   margin-top: 10px;
   padding: 3%;
   font-size: 4vw;
-  background-color: rgb(100, 170, 255);
+  background-color: rgb(90, 160, 245);
   border-radius: 7%;
   border: 1px solid rgb(130, 130, 130);
+  color: white;
+  text-shadow: 0 1.5px black;
 }
 
 .login-container, .register-container {
@@ -58,7 +60,7 @@
 }
 
 .login-screen button:hover {
-  background-color: rgb(85, 155, 240);
+  background-color: rgb(75, 145, 230);
   cursor: pointer;
 }
 

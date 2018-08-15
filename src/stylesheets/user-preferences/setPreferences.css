@@ -1,0 +1,111 @@
+/* Style Heading and Paragraph */
+.set-preferences h2 {
+  margin: 0;
+  font-size: 6vw;
+}
+.set-preferences p {
+  font-size: 4.5vw;
+}
+.set-preferences .sidenote {
+  font-style: italic;
+  font-size: 4vw;
+}
+
+/* Form is slightly different for the initial login.
+Has the class .landing-page   */
+.landing-page .set-preferences {
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+
+
+/* Style Form Elements */
+.set-preferences label {
+  display: inline-block;
+  max-width: 80%;
+  font-size: 4.5vw;
+}
+.set-preferences fieldset {
+  margin-top: 20px;
+  background: linear-gradient(rgb(255, 126, 84) -35%, rgb(255, 255, 255));
+}
+.set-preferences .checkbox-span {
+  vertical-align: middle;
+  padding: 5px 0;
+}
+.set-preferences .checkbox-container {
+  padding: 10px 0;
+}
+.set-preferences input {
+  margin: 0 7px 0 0;
+}
+.set-preferences input:hover {
+  cursor: pointer;
+}
+.set-preferences legend {
+  background-color: rgb(58, 50, 50);
+  font-size: 5vw;
+  font-style: italic;
+  font-weight: bold;
+  border: 1px solid black;
+  padding: 5px;
+  color: white;
+}
+.set-preferences .checked {
+  background-color: rgb(200, 255, 200);
+}
+
+
+/* Style Buttons */
+.set-preferences button {
+  border: 2px solid rgb(200, 200, 200);
+  border-radius: 5px;
+  font-size: 4vw;
+  padding: 8px;
+  display: block;
+  margin: 15px 10px 10px 0;
+  color: white;
+}
+.set-preferences button.back {
+  background-color: rgb(50, 50, 50);
+}
+.set-preferences button.back:hover, .set-preferences button.back:focus {
+  background-color: rgb(100, 100, 100);
+  cursor: pointer;
+}
+
+.set-preferences button[type=reset] {
+  background-color: rgb(100, 0, 0);
+}
+.set-preferences button[type=reset]:hover, .set-preferences button[type=reset]:focus {
+  background-color: rgb(130, 30, 30);
+  cursor: pointer;
+}
+
+.set-preferences button[type=submit] {
+  background-color: rgb(50, 50, 150);
+}
+.set-preferences button[type=submit]:hover, .set-preferences button[type=submit]:focus {
+  background-color: rgb(70, 70, 170);
+}
+
+
+/* Stops font size from growing after screen is 400px wide */
+@media only screen and (min-width: 400px){
+  .set-preferences h2 {
+    font-size: 24px
+  }
+  .set-preferences p, .set-preferences label {
+    font-size: 18px;
+  }
+  .set-preferences .sidenote, .set-preferences button {
+    font-size: 16px;
+  }
+  .set-preferences legend {
+    font-size: 20px;
+  }
+}

@@ -9,7 +9,8 @@ export default function PreferenceFieldset(props) {
       value={field.value}
       displayedValue={field.displayedValue}
       sidenote={field.sidenote}
-      handleCheck={props.handleCheck} />
+      handleCheck={props.handleCheck}
+      selectedFields={props.selectedFields} />
   });
 
   return(

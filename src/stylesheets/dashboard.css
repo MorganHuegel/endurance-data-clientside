@@ -7,6 +7,11 @@ nav div {
   margin: 0 20px 0 20px;
 }
 
+.nav-link-container {
+ max-width: 600px;
+ margin: 0 auto;
+}
+
 .navbar-link {
   display: inline-block;
   vertical-align: middle;
@@ -44,6 +49,8 @@ nav div {
   border: 2px solid rgba(254, 106, 64, 0.4);
   border-top: none;
   border-radius: 0 0 5% 5%;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 @media only screen and (min-width: 450px) {

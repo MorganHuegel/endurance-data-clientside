@@ -16,7 +16,7 @@ export default function Dashboard(props){
   if (props.currentUser.preferences.length === 0) {
     return (
       <Router>
-        <div>
+        <div className='landing-page'>
           <SetPreferences />
         </div>
       </Router>
