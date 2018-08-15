@@ -6,7 +6,7 @@ body {
   margin: 0;
   padding: 20px;
   font-family: sans-serif;
-  background-color: rgb(48, 65, 60);
+  background-color: rgb(58, 50, 50);
 }
 
 h1 {
@@ -30,7 +30,7 @@ ul {
 header {
   width: 100%;
   text-align: center;
-  background: radial-gradient(rgb(244, 96, 54), rgb(255, 255, 255) 60%, rgb(48, 65, 60) 80%);
+  background: radial-gradient(rgb(244, 96, 54), rgb(255, 255, 255) 60%, rgb(58, 50, 50) 80%);
   max-width: 650px;
   margin: 0 auto 20px;
   padding: 10px;

@@ -1,0 +1,78 @@
+.set-username h2 {
+  margin: 0 0 10px 0;
+  font-size: 6vw;
+}
+
+.set-username p {
+  margin: 15px 0 20px 0;
+}
+
+.set-username p, .set-username label {
+  font-size: 4.5vw;
+}
+
+.set-username .current-username {
+  font-style: italic;
+}
+
+.set-username .input-row {
+  padding: 20px 0 25px 0;
+  text-align: center;
+}
+
+.set-username input {
+  font-size: 3.5vw;
+  padding: 5px;
+  background-color: rgb(255, 230, 210);
+}
+
+
+/* Style Buttons */
+.set-username .button-container {
+  display: flex;
+  justify-content: space-around;
+  max-width: 400px
+}
+
+.set-username button {
+  font-size: 4vw;
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 5px;
+  padding: 10px 8px;
+  color: white;
+}
+
+.set-username button[type=submit] {
+  background-color: rgb(50, 50, 150);
+}
+.set-username button[type=submit]:hover, .set-username button[type=submit]:focus {
+  background-color: rgb(80, 80, 180);
+  cursor: pointer;
+}
+
+.set-username button[type=reset] {
+  background-color: rgb(50, 50, 50);
+}
+.set-username button[type=reset]:hover, .set-username button[type=reset]:focus {
+  background-color: rgb(80, 80, 80);
+  cursor: pointer;
+}
+
+
+@media only screen and (min-width: 400px) {
+  .set-username h2 {
+    font-size: 24px;
+  }
+
+  .set-username p, .set-username label {
+    font-size: 18px;
+  }
+  
+  .set-username input {
+    font-size: 14px;
+  }
+
+  .set-username button {
+    font-size: 16px;
+  }
+}

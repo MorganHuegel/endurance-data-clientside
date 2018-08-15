@@ -1,6 +1,8 @@
+import '../../stylesheets/user-preferences/setPassword.css';
+
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { updateUserInfo } from '../../actions/userUpdate';
 import { setWorkoutError } from '../../actions/workoutsDelete';
 
@@ -13,6 +15,7 @@ class SetPassword extends React.Component {
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
 
@@ -37,28 +40,30 @@ class SetPassword extends React.Component {
     })
   }
 
+  handleReset(event){
+    event.preventDefault();
+    this.setState({submitted: true});
+  }
+
   render(props){  
     if(this.state.submitted){
       return <Redirect to='/profile'/>
     } else {
 
     return (
-      <div>
-        <h3>Change password</h3>
-        {this.props.workoutError}
+      <div className='set-password'>
+        <h2>Change password</h2>
+        <p>Hi <span className='current-username'>{this.props.currentUser.username} </span>! </p>
         <form id='changePassword' name='changePassword' onSubmit={e => this.handleSubmit(e)}>
-          <p>Hi {this.props.currentUser.username}! </p>
           <label htmlFor='newPassword'>Enter a new password: </label>
           <input type='password' id='newPassword' placeholder='password...' required/>
           
           <label htmlFor='confirmPassword'>Confirm Password:</label>
           <input type='password' id='confirmPassword' placeholder='confirm password...' required/>
 
-          <div>
+          <div className='button-container'>
             <button type='submit'>Update Password</button>
-            <Link to='/profile'>
-              <button type='reset'>Nevermind...</button>
-            </Link>
+            <button type='reset' onClick={e => this.handleReset(e)}>Nevermind...</button>
           </div>
         </form>
       </div>

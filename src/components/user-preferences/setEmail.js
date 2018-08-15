@@ -2,7 +2,7 @@ import '../../stylesheets/user-preferences/setEmail.css';
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { updateUserInfo } from '../../actions/userUpdate';
 import { setWorkoutError } from '../../actions/workoutsDelete';
 
@@ -15,6 +15,7 @@ class SetEmail extends React.Component {
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
 
@@ -28,6 +29,11 @@ class SetEmail extends React.Component {
         this.props.dispatch(updateUserInfo({email: newEmail}));
       })
     }
+  }
+
+  handleReset(event){
+    event.preventDefault();
+    this.setState({submitted: true});
   }
 
   render(props){  
@@ -57,9 +63,7 @@ class SetEmail extends React.Component {
 
           <div className='button-container'>
             <button type='submit'>Update Email</button>
-            <Link to='/profile'>
-              <button type='reset'>Nevermind...</button>
-            </Link>
+            <button type='reset' onClick={e => this.handleReset(e)}>Nevermind...</button>
           </div>
         </form>
       </div>

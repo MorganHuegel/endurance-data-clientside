@@ -1,6 +1,8 @@
+import '../../stylesheets/user-preferences/setUsername.css';
+
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { updateUserInfo } from '../../actions/userUpdate';
 import { setWorkoutError } from '../../actions/workoutsDelete';
 
@@ -13,6 +15,7 @@ class SetUsername extends React.Component {
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
 
@@ -29,28 +32,32 @@ class SetUsername extends React.Component {
     })
   }
 
+  handleReset(event){
+    event.preventDefault();
+    this.setState({submitted: true});
+  }
+
   render(props){  
     if(this.state.submitted){
       return <Redirect to='/profile'/>
     }
 
     const currentUsername = this.props.currentUser.username;
-    let message = <p>Hi {currentUsername}!</p> ;
+    let message = <p>Hi <span className='current-username'>{currentUsername}</span> !</p> ;
 
     return (
-      <div>
-        <h3>Change username</h3>
-        {this.props.workoutError}
+      <div className='set-username'>
+        <h2>Change username</h2>
+        {message}
         <form id='changeUsername' name='changeUsername' onSubmit={e => this.handleSubmit(e)}>
-          {message}
           <label htmlFor='newUsername'>Enter a new username: </label>
-          <input type='text' id='newUsername' placeholder='username' required/>
+          <div className='input-row'>
+            <input type='text' id='newUsername' placeholder='username' required/>
+          </div>
 
-          <div>
+          <div className='button-container'>
             <button type='submit'>Update Username</button>
-            <Link to='/profile'>
-              <button type='reset'>Nevermind...</button>
-            </Link>
+            <button type='reset' onClick={e => this.handleReset(e)}>Nevermind...</button>
           </div>
         </form>
       </div>
