@@ -11,7 +11,7 @@ import WorkoutList from './workoutList';
 import SingleWorkout from './singleWorkout';
 import SingleWorkoutDelete from './singleWorkoutDelete';
 import AddWorkout from './addNewWorkout';
-import EditWorkout from './singleWorkoutEdit';
+import SingleWorkoutEdit from './singleWorkoutEdit';
 
 class Workouts extends React.Component{
   constructor(props){
@@ -116,7 +116,7 @@ class Workouts extends React.Component{
               />
 
     } else if (this.state.editingWorkout) {
-      return <EditWorkout
+      return <SingleWorkoutEdit
                 currentWorkout={this.state.currentWorkout}
                 toggleEditState={this.toggleEditState}
                 handleEditFormSubmit={this.handleEditFormSubmit}

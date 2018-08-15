@@ -27,7 +27,7 @@ export default function Dashboard(props){
     <Router>
       <div>
         <nav>
-          <div>
+          <div className='nav-link-container'>
             <NavLink to='/workouts' className='navbar-link workouts' activeClassName='selectedNav'>Workout-Logs</NavLink>
             <NavLink to='/analysis' className='navbar-link data-analysis' activeClassName='selectedNav'>Data-Analysis</NavLink>
             <NavLink to='/profile' className='navbar-link profile' activeClassName='selectedNav'>Profile</NavLink>
