@@ -1,10 +1,9 @@
 import '../../stylesheets/user-preferences/profile.css';
 
 import React from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-function Profile(){
+export default function Profile(){
   return(
     <div className='profile'>
       <h2>Profile Settings</h2>
@@ -41,4 +40,3 @@ function Profile(){
   );
 }
 
-export default connect()(Profile);
