@@ -3,13 +3,9 @@ nav {
   margin: 0 -20px 0 -20px;
 }
 
-nav div {
-  margin: 0 20px 0 20px;
-}
-
 .nav-link-container {
  max-width: 600px;
- margin: 0 auto;
+ margin: 0 20px;
 }
 
 .navbar-link {
@@ -58,5 +54,11 @@ nav div {
     margin: 0;
     width: 33.33%;
     font-size: 20px;
+  }
+}
+
+@media only screen and (min-width: 640px){
+  .nav-link-container {
+    margin: 0 auto;
   }
 }

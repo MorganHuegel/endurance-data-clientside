@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import PreferenceForm from './preferenceForm';
 
-function SetPreferences(props){
+export function SetPreferences(props){
   // new user has no preferences yet
   if (props.currentUser.preferences.length === 0) {
     return (

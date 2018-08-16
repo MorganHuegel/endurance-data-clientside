@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { changeUserFail } from '../../actions/register-user';
 import { connect } from 'react-redux';
 
-class ConfirmLogout extends React.Component{
+export class ConfirmLogout extends React.Component{
   constructor(props){
     super(props);
 

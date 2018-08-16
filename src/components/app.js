@@ -11,9 +11,9 @@ import {connect} from 'react-redux';
 import Spinner from 'react-spinkit'
 import { getWorkouts } from '../actions/workoutsGet';
 
-class App extends React.Component {
+export class App extends React.Component {
   componentWillMount(){
-    if(localStorage.getItem('authToken') ){
+    if(localStorage.getItem('authToken') ) {
       this.props.dispatch(getWorkouts());
     }
   }

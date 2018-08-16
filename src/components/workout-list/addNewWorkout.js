@@ -9,7 +9,9 @@ import formatDisplayName from '../../format-display-name';
 export default class AddWorkout extends React.Component{
 
   componentWillMount(props){
-    this.props.changeFormOptions(this.props.currentUser.preferences, 'ADD');
+    if(this.props.currentUser){
+      this.props.changeFormOptions(this.props.currentUser.preferences, 'ADD');
+    }
   }
 
   handleSubmit = (event) => {

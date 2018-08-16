@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import ConfirmLogout from '../../components/user-preferences/confirmLogout';
+import { ConfirmLogout } from '../../components/user-preferences/confirmLogout';
 
 describe('<ConfirmLogout />', () => {
   /*

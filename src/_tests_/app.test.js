@@ -1,18 +1,19 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import App from '../components/app';
+import {App} from '../components/app';
 
 describe('<App />', () => {
-  it('should render the <App /> component', () => {
-    const initialState = {
+  const initialState = {
       loading: false,
       currentUser: null,
       workoutError: null,
       loginError: null,
       registerError: null
     }
-    const wrapper = shallow(<App store={initialState}/>);
-    console.log('WRAPPER',wrapper.debug());
+  const testDispatch = jest.fn();
+
+  it('should render the <App /> component', () => {
+    shallow(<App store={initialState} dispatch={testDispatch}/>);
   });
 });

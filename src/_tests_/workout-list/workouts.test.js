@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Workouts from '../../components/workout-list/workouts';
+import { Workouts } from '../../components/workout-list/workouts';
 
 describe('<Workouts />', () => {
 

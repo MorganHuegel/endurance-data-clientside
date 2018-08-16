@@ -13,7 +13,7 @@ import SingleWorkoutDelete from './singleWorkoutDelete';
 import AddWorkout from './addNewWorkout';
 import SingleWorkoutEdit from './singleWorkoutEdit';
 
-class Workouts extends React.Component{
+export class Workouts extends React.Component{
   constructor(props){
     super(props);
     this.state = {

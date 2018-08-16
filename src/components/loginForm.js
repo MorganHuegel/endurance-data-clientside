@@ -4,7 +4,7 @@ import {loginUser} from '../actions/login-user';
 import { getWorkouts } from '../actions/workoutsGet';
 import { changeUserFail } from '../actions/register-user';
 
-class LoginForm extends React.Component{
+export class LoginForm extends React.Component{
 
   onSubmit = (e) => {
     e.preventDefault();

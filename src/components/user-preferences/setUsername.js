@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import { updateUserInfo } from '../../actions/userUpdate';
 import { setWorkoutError } from '../../actions/workoutsDelete';
 
-class SetUsername extends React.Component {
+export class SetUsername extends React.Component {
   constructor(props){
     super(props);
 

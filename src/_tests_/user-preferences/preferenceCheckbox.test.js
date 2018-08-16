@@ -10,6 +10,7 @@ describe('<PreferenceCheckbox />', () => {
   const testValue = 'totalDistance';
   const testDisplayedValue = 'Total Distance';
   const testSidenote = '';
+  const testSelectedFields = ['totalTime', 'averagePace', 'hoursOfSleep', 'tss'];
   const testHandleCheck = jest.fn();
 
   
@@ -20,6 +21,7 @@ describe('<PreferenceCheckbox />', () => {
       displayedValue={testDisplayedValue}
       sidenote={testSidenote}
       handleCheck={testHandleCheck}
+      selectedFields={testSelectedFields}
     />);
   })
 });

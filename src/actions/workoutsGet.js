@@ -13,6 +13,7 @@ export const getWorkouts = () => (dispatch) => {
     }
   })
   .then(response => {
+
     if(!response.ok){
       //check for specific error sent by backend
       if( response.headers.has ('content-type') 
@@ -27,12 +28,10 @@ export const getWorkouts = () => (dispatch) => {
         message: response.statusText
       })
     }
-
     return response.json();
   })
   .then( newUser => {
-    console.log('NEW USER:',newUser);
-    return dispatch(changeUserSuccess(newUser));
+    dispatch(changeUserSuccess(newUser));
   })
   .catch(err => {
     dispatch(changeUserFail(err, 'login'));

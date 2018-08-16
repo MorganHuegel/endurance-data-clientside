@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {registerUser, changeUserFail} from '../actions/register-user';
 import { getWorkouts } from '../actions/workoutsGet';
 
-class RegisterForm extends React.Component{
+export class RegisterForm extends React.Component{
 
   onSubmit = (e) => {
     e.preventDefault();
