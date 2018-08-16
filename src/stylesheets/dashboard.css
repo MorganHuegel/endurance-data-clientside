@@ -36,7 +36,23 @@ nav {
 }
 
 .error-message.dashboard {
+  margin: 0 auto;
+  padding: 5px 5px 0 5px;
+  max-width: 600px;
+  text-align: center;
+  background-color: white;
+  border-left: 2px solid rgba(254, 106, 64, 0.4);
+  border-right: 2px solid rgba(254, 106, 64, 0.4);
+}
+.error-message.dashboard p {
   margin: 0;
+}
+.error-message.dashboard button {
+  font-size: 4vw;
+  margin: 0;
+  background-color: rgb(20, 90, 175);
+  color: white;
+  border-radius: 5px;
 }
 
 .dashboard-content {
@@ -47,6 +63,12 @@ nav {
   border-radius: 0 0 5% 5%;
   max-width: 600px;
   margin: 0 auto;
+}
+
+@media only screen and (min-width: 400px){
+  .error-message.dashboard button {
+    font-size: 16px;
+  }
 }
 
 @media only screen and (min-width: 450px) {

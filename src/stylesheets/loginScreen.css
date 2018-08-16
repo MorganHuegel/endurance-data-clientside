@@ -36,11 +36,11 @@
   margin-top: 10px;
   padding: 3%;
   font-size: 4vw;
-  background-color: rgb(90, 160, 245);
+  background-color: rgb(60, 120, 185);
   border-radius: 7%;
   border: 1px solid rgb(130, 130, 130);
   color: white;
-  text-shadow: 0 1.5px black;
+  text-shadow: 1px 1px black;
 }
 
 .login-container, .register-container {
@@ -55,11 +55,11 @@
 .error-message {
   color: rgb(20, 90, 175);
   font-style: italic;
-  font-size: 16px;
+  font-size: 4.5vw;
   text-align: center;
 }
 
-.login-screen button:hover {
+.login-screen button:hover, .login-screen button:focus {
   background-color: rgb(75, 145, 230);
   cursor: pointer;
 }
@@ -105,7 +105,6 @@
     margin-top: 10px;
     padding: 10px;
     font-size: 16px;
-    background-color: rgb(100, 170, 255);
   }
   .error-message {
     font-size: 20px;

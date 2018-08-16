@@ -46,7 +46,8 @@ export default function authReducer(state=initialState, action){
       loading: false,
       currentUser: action.userData,
       registerError: null,
-      loginError: null
+      loginError: null,
+      workoutError: null
     })
 
 
@@ -58,14 +59,16 @@ export default function authReducer(state=initialState, action){
         loading: false,
         currentUser: null,
         registerError: action.error,
-        loginError: null
+        loginError: null,
+        workoutError: null
       })
     } else if (action.form === 'login') {
       return Object.assign({}, state, {
         loading: false,
         currentUser: null,
         registerError: null,
-        loginError: action.error
+        loginError: action.error,
+        workoutError: null
       })
     }
 

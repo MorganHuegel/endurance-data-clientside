@@ -33,7 +33,7 @@ export class App extends React.Component {
       mainContent = <LoginScreen registerError={this.props.registerError} loginError={this.props.loginError}/>
 
     } else {
-      mainContent = <Dashboard currentUser={this.props.currentUser} workoutError={this.props.workoutError}/>
+      mainContent = <Dashboard currentUser={this.props.currentUser} workoutError={this.props.workoutError} dispatch={this.props.dispatch}/>
     }
     
     return (
