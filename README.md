@@ -24,6 +24,15 @@
 ## Screenshots:
 
 ![Login Page](./screenshots/login-screen.png)
+![Choose Preferences for Add Form](./screenshots/choose-preferences-screen.png)
+![Landing Screen for first time users](./screenshots/landing-screen.png)
+![Adding a new workout](./screenshots/add-workout-screen.png)
+![Change User Settings landing](./screenshots/user-settings-screen)
+
+Mobile View:
+![Viewing all workouts on mobile](./screenshots/view-workout-list-mobile.png) ![View Single Workout on mobile](./screenshots/view-workout-screen-mobile.png)
+
+
 
 ## Description of Tech Stack:
 
