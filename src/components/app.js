@@ -25,7 +25,7 @@ export class App extends React.Component {
       mainContent = (
         <div className='spinner'>
           <Spinner name='wordpress' fadeIn='none' />
-          <p>Loading...</p>
+          <p className='spinner-message'>Loading...</p>
         </div>
       )
       
