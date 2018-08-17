@@ -7,6 +7,12 @@
 ## Deployment:
 
   App is deployed at: https://endurancedata.netlify.com/ 
+  
+  *Dummy User for demonstration purposes:*
+  
+  **username**: bigRudy66
+  
+  **password**: baseball
 
 
 
