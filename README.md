@@ -23,6 +23,8 @@
 
 ## Screenshots:
 
+![Login Page](./screenshots/login-screen.png)
+
 ## Description of Tech Stack:
 
    Endurance Data is created using React for the front-end and Node.js for the back-end.
