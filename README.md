@@ -24,37 +24,37 @@
 ## Screenshots:
 
 
-Initial Login Page:
+#### Initial Login Page:
 
 
 ![Login Page](./screenshots/login-screen.png)
 
 
-Choosing Default Preferences:
+#### Choosing Default Preferences:
 
 
 ![Choose Preferences for Add Form](./screenshots/choose-preferences-screen.png)
 
 
-Landing Screen for first time users:
+#### Landing Screen for first time users:
 
 
 ![Landing Screen for first time users](./screenshots/landing-screen.png)
 
 
-Adding Form for entering a new workout:
+#### Adding Form for entering a new workout:
 
 
 ![Adding a new workout](./screenshots/add-workout-screen.png)
 
 
-Main page for changing user settings:
+#### Main page for changing user settings:
 
 
 ![Change User Settings landing](./screenshots/user-settings-screen.png)
 
 
-Mobile View:
+#### Mobile View:
 
 
 ![Viewing all workouts on mobile](./screenshots/view-workout-list-mobile.png) ![View Single Workout on mobile](./screenshots/view-workout-screen-mobile.png)
