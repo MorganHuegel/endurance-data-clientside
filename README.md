@@ -10,9 +10,9 @@
   
   *Dummy User for demonstration purposes:*
   
-  **username**: bigRudy66
+  **username**: user
   
-  **password**: baseball
+  **password**: password
 
 
 
