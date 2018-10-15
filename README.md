@@ -15,6 +15,9 @@
   **password**: password
 
 
+  Server-side repo [here](https://github.com/MorganHuegel/endurance-data-serverside)
+
+
 
 
 ## Description:
