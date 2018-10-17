@@ -10,7 +10,7 @@
   
   *Dummy User for demonstration purposes:*
   
-  **username**: user
+  **username**: demouser
   
   **password**: password
 
