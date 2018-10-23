@@ -64,6 +64,21 @@
   cursor: pointer;
 }
 
+.login-screen .demo-button {
+  margin: 0 0 0 20px;
+  background: none;
+  color: rgb(75, 145, 230);
+  text-shadow: none;
+  text-decoration: underline;
+  border: none;
+  padding: 0;
+}
+.login-screen .demo-button:hover, .login-screen .demo-button:hover {
+  cursor: pointer;
+  background: none;
+  color: rgb(55, 125, 200);
+}
+
 
 @media only screen and (min-width: 400px) {
   .login-screen label {

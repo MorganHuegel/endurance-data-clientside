@@ -52,6 +52,24 @@ export class LoginForm extends React.Component{
   }
 
 
+  demoLogin = () => {
+    document.getElementById('loginUsername').value = 'demouser';
+    document.getElementById('loginPassword').value = 'password';
+    setTimeout(
+      () => {
+        return this.props.dispatch(loginUser({username: 'demouser', password: 'password'}))
+          .then( token => {
+            if(!token){
+              return;
+            } else {
+              this.props.dispatch(getWorkouts());
+            }
+          })
+      }, 500)
+  }
+
+  
+
   render(props){
     let errorMessage;
     if(this.props.loginError){
@@ -77,6 +95,9 @@ export class LoginForm extends React.Component{
           </div>
 
           <button type='submit'>Login</button>
+          <button type='button' className='demo-button' onClick={e => this.demoLogin(e)}>
+            Use Demo Account
+          </button>
 
         </form>
       </div>
