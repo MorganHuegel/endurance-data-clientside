@@ -55,8 +55,8 @@ export default class PreferenceForm extends React.Component {
       return <Redirect to={this.props.onSubmitPath} />
     }
 
-    /* DATA variable is at bottom of this file (for brevity) */
-    const fieldsets = data.map(fieldset => {
+    /* FIELDS variable is at bottom of this file (for brevity) */
+    const fieldsets = fields.map(fieldset => {
       return <PreferenceFieldset 
         key={fieldset.name}
         name={fieldset.name} 
@@ -84,7 +84,7 @@ export default class PreferenceForm extends React.Component {
 
 
 
-const data = [
+export const fields = [
   {
     name: 'workoutDetails',
     displayName: 'Workout Details',
