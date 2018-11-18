@@ -8,6 +8,7 @@ export function changeGraph (data, numDays, selectedField) {
   if (recentWorkouts.length === 0) return false;
   const pxPerYValue = drawHorizontalGrid(recentWorkouts, selectedField);
   const pxPerXValue = drawVerticalGrid(numDays);
+  drawDataPoints(recentWorkouts, pxPerXValue, pxPerYValue, selectedField, numDays);
 }
 
 
@@ -15,7 +16,7 @@ export function changeGraph (data, numDays, selectedField) {
 
 function getRecentWorkouts (workoutData, numDays, selectedField) {
   return workoutData.filter(workout => {
-    const now = Number(moment().format('x'));
+    const now = Number(moment(moment().format('YYYY MMM D'), 'YYYY MMM D').format('x'));
     const workoutDate = Number(moment(workout.date).format('x'));
     return (now - workoutDate <= 1000 * 60 * 60 * 24 * numDays) && (workout[selectedField]);
   });
@@ -141,18 +142,18 @@ function drawVerticalGrid (numDays) {
   //assume 30 days for now, so 30 even intervals
   const currentMidnight = moment(moment().format('MMM D YYYY'), 'MMM D YYYY').format('x');
   const xLabels = [];
-  for (let i = 0; i < numDays; i++) {
+  for (let i = 0; i <= numDays; i++) {
     switch (true) {
       case (numDays === 30 && window.innerWidth < 700): // Small screen -> label every fourth date
         pxPerLabel = pxPerLine * 4;
-        if (i % 4 === 0) xLabels.unshift(moment(Number(currentMidnight) - i * 1000 * 60 * 60 * 24, 'x').format('ddd MMM D'));
+        if (i % 4 === 0) xLabels.unshift(moment(Number(currentMidnight) - (numDays * 1000 * 60 * 60 * 24) + (i * 1000 * 60 * 60 * 24), 'x').format('ddd MMM D'));
         break;
       case (numDays === 30 && window.innerWidth < 1000): // Medium screen -> label every other date
         pxPerLabel = pxPerLine * 2;
-        if (i % 2 === 0) xLabels.unshift(moment(Number(currentMidnight) - i * 1000 * 60 * 60 * 24, 'x').format('ddd MMM D'));
+        if (i % 2 === 0) xLabels.unshift(moment(Number(currentMidnight) - (numDays * 1000 * 60 * 60 * 24) + (i * 1000 * 60 * 60 * 24), 'x').format('ddd MMM D'));
         break;
       default:
-        xLabels.unshift(moment(Number(currentMidnight) - i * 1000 * 60 * 60 * 24, 'x').format('ddd MMM D'))
+        xLabels.unshift(moment(Number(currentMidnight) - (numDays * 1000 * 60 * 60 * 24) + (i * 1000 * 60 * 60 * 24), 'x').format('ddd MMM D'));
     }
   }
 
@@ -160,7 +161,7 @@ function drawVerticalGrid (numDays) {
   for(let i = 0; i < xLabels.length; i++) {
     select(svg)
       .append('text')
-      .text(xLabels[i])
+      .text(xLabels[xLabels.length - 1 - i])
       .attr('x', () => {
         if (i === 0 && window.innerWidth < 700) return i * pxPerLabel;
         if (window.innerWidth < 700) return i * pxPerLabel - 5;
@@ -176,7 +177,57 @@ function drawVerticalGrid (numDays) {
         else return `rotate(70, ${i * pxPerLabel + 25}, ${graphHeight + 40})`
       });
   }
-  
 
   return pxPerLine;  
+}
+
+
+function drawDataPoints (data, pxPerXValue, pxPerYValue, selectedField, numDays) {
+  const currentMidnight = moment(moment().format('MMM D YYYY'), 'MMM D YYYY').format('x');
+  const earliestDate = Number(currentMidnight) - (1000 * 60 * 60 * 24 * numDays);
+
+  const pxCoordinates = [];
+  for (let i = 0; i < 30; i++) {
+    const dateToCheck = earliestDate + (1000 * 60 * 60 * 24 * i);
+    const workout = data.find(workout => Math.abs(
+      Number(moment(workout.date).format('x')) - dateToCheck) < (1000 * 60 * 60 * 23)
+    );
+    if (workout) {
+      const xValue = i * pxPerXValue;
+      const datum = workout[selectedField].amount || workout[selectedField];
+      const yValue = datum * pxPerYValue;
+      pxCoordinates.push([xValue, yValue]);
+    } else {
+      pxCoordinates.push([i * pxPerXValue, 0])
+    }
+  }
+
+  const svg = document.getElementsByClassName('da-graph')[0];
+  const svgHeight = svg.getBoundingClientRect().height;
+  for (let i = 0; i < pxCoordinates.length; i++) {
+    select(svg)
+      .append('circle')
+      .attr('cx', () => {
+        if (window.innerWidth < 700) return pxCoordinates[i][0];
+        else return pxCoordinates[i][0] + 32;
+      })
+      .attr('cy', () => svgHeight - pxCoordinates[i][1] - 78)
+      .attr('r', '5')
+      .attr('fill', 'black')
+
+    if (i < pxCoordinates.length - 1) {
+      select(svg)
+        .append('line')
+        .attr('x1', () => {
+          if (window.innerWidth < 700) return pxCoordinates[i][0];
+          else return pxCoordinates[i][0] + 32;
+        })
+        .attr('y1', () => svgHeight - pxCoordinates[i][1] - 78)
+        .attr('x2', () => {
+          if (window.innerWidth < 700) return pxCoordinates[i + 1][0];
+          else return pxCoordinates[i + 1][0] + 32;
+        })
+        .attr('y2', () => svgHeight - pxCoordinates[i + 1][1] - 78)
+    }
+  }
 }
