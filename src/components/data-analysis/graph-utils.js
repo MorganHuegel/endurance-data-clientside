@@ -5,10 +5,14 @@ export function changeGraph (data, numDays, selectedField) {
   document.getElementsByClassName('da-graph')[0].innerHTML = ''; // Resets the graph
   appendGraphContainer();
   const recentWorkouts = getRecentWorkouts(data, numDays, selectedField);
-  if (recentWorkouts.length === 0) return false;
+  if (recentWorkouts.length === 0) {
+    handleNoData(numDays);
+    return false;
+  }
   const pxPerYValue = drawHorizontalGrid(recentWorkouts, selectedField);
   const pxPerXValue = drawVerticalGrid(numDays);
   drawDataPoints(recentWorkouts, pxPerXValue, pxPerYValue, selectedField, numDays);
+  return true;
 }
 
 
@@ -21,6 +25,33 @@ function getRecentWorkouts (workoutData, numDays, selectedField) {
     return (now - workoutDate <= 1000 * 60 * 60 * 24 * numDays) && (workout[selectedField]);
   });
 };
+
+
+
+function handleNoData (numDays) {
+  const svg = document.getElementsByClassName('da-graph')[0];
+  const graphHeight = svg.getBoundingClientRect().height;
+  const graphWidth = svg.getBoundingClientRect().width;
+  select(svg)
+    .append('text')
+    .text(`No data for selected field`)
+    .attr('x', () => {
+      if (window.innerWidth < 700) return graphWidth / 2 - 88;
+      else return graphWidth / 2 - 112;
+    })
+    .attr('y', () => graphHeight / 2)
+    .attr('class', 'no-data-message')
+
+  select(svg)
+    .append('text')
+    .text(`for the past ${numDays} days.`)
+    .attr('x', () => {
+      if (window.innerWidth < 700) return graphWidth / 2 - 73;
+      else return graphWidth / 2 - 90;
+    })
+    .attr('y', () => graphHeight / 2 + 30)
+    .attr('class', 'no-data-message')
+}
 
 
 

@@ -10,6 +10,10 @@
   margin: 30px 0 50px -20px;
   text-align: center;
 }
+.data-analysis span.caption {
+  font-style: italic;
+}
+
 .y-axis {
   fill: black;
 }
@@ -27,6 +31,11 @@
   fill: rgb(234, 86, 44);
   stroke: black;
   r: 3;
+}
+
+.data-analysis .no-data-message {
+  font-size: 16px;
+  fill: red;
 }
 
 @media only screen and (min-width: 700px) {
@@ -48,5 +57,8 @@
   }
   .data-analysis circle {
     r: 5;
+  }
+  .data-analysis .no-data-message {
+    font-size: 20px;
   }
 }
