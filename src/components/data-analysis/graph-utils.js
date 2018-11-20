@@ -33,12 +33,12 @@ function appendGraphContainer () {
     select(svg)
       .append('polygon')
       .attr('points', `0,0 ${graphWidth},0 ${graphWidth},${graphHeight - 80} 0,${graphHeight - 80}`)
-      .attr('fill', 'red');
+      .attr('fill', 'white');
   } else {
     select(svg)
       .append('polygon')
       .attr('points', `30,30 ${graphWidth - 30},30 ${graphWidth - 30},${graphHeight - 80} 30,${graphHeight - 80}`)
-      .attr('fill', 'red');
+      .attr('fill', 'white');
   }
 }
 
@@ -212,8 +212,6 @@ function drawDataPoints (data, pxPerXValue, pxPerYValue, selectedField, numDays)
         else return pxCoordinates[i][0] + 32;
       })
       .attr('cy', () => svgHeight - pxCoordinates[i][1] - 78)
-      .attr('r', '5')
-      .attr('fill', 'black')
 
     if (i < pxCoordinates.length - 1) {
       select(svg)
