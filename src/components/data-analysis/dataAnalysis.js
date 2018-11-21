@@ -9,13 +9,17 @@ export class DataAnalysis extends React.Component {
     super(props);
     this.state = {
       selectedField: null,
-      numDays: 30
+      numDays: null
     }
   }
 
   handleSelectField = e => {
     e.preventDefault();
-    this.setState({selectedField: e.target['select-field'].value});
+    let numDays = Number(e.target['select-numDays'].value);
+    this.setState({
+      selectedField: e.target['select-field'].value,
+      numDays: numDays
+    });
   }
 
   render() {

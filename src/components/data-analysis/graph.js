@@ -30,23 +30,18 @@ export default class Graph extends React.Component {
   }
 
   render(){
-    if (this.state.noData) {
-      return <p>No data to display</p>
-    } 
-    else {
-      let captionField;
-      for (let i = 0; i < 3; i++) {
-        const correctField = fields[i].inputs.find(field => field.value === this.props.selectedField)
-        if (correctField) captionField = correctField;
-        else continue;
-      }
-
-      return (
-        <figure>
-          <figcaption>Displaying <span className='caption'>{captionField.displayedValue}</span> over the last 30 days</figcaption>
-          <svg className='da-graph'></svg>
-        </figure>
-      )
+    let captionField;
+    for (let i = 0; i < 3; i++) {
+      const correctField = fields[i].inputs.find(field => field.value === this.props.selectedField)
+      if (correctField) captionField = correctField;
+      else continue;
     }
+
+    return (
+      <figure>
+        <figcaption>Displaying <span className='caption'>{captionField.displayedValue}</span> over the last {this.props.numDays} days</figcaption>
+        <svg className='da-graph'></svg>
+      </figure>
+    )
   }
 }

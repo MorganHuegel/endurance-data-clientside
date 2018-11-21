@@ -170,7 +170,6 @@ function drawVerticalGrid (numDays) {
 
   let pxPerLabel = pxPerLine;
 
-  //assume 30 days for now, so 30 even intervals
   const currentMidnight = moment(moment().format('MMM D YYYY'), 'MMM D YYYY').format('x');
   const xLabels = [];
   for (let i = 0; i <= numDays; i++) {
@@ -180,6 +179,18 @@ function drawVerticalGrid (numDays) {
         if (i % 4 === 0) xLabels.unshift(moment(Number(currentMidnight) - (numDays * 1000 * 60 * 60 * 24) + (i * 1000 * 60 * 60 * 24), 'x').format('ddd MMM D'));
         break;
       case (numDays === 30 && window.innerWidth < 1000): // Medium screen -> label every other date
+        pxPerLabel = pxPerLine * 2;
+        if (i % 2 === 0) xLabels.unshift(moment(Number(currentMidnight) - (numDays * 1000 * 60 * 60 * 24) + (i * 1000 * 60 * 60 * 24), 'x').format('ddd MMM D'));
+        break;
+      case (numDays === 60 && window.innerWidth < 700):
+        pxPerLabel = pxPerLine * 7;
+        if (i % 7 === 0) xLabels.unshift(moment(Number(currentMidnight) - (numDays * 1000 * 60 * 60 * 24) + (i * 1000 * 60 * 60 * 24), 'x').format('ddd MMM D'));
+        break;
+      case (numDays === 60 && window.innerWidth < 1000):
+        pxPerLabel = pxPerLine * 4;
+        if (i % 4 === 0) xLabels.unshift(moment(Number(currentMidnight) - (numDays * 1000 * 60 * 60 * 24) + (i * 1000 * 60 * 60 * 24), 'x').format('ddd MMM D'));
+        break;
+      case (numDays === 60):
         pxPerLabel = pxPerLine * 2;
         if (i % 2 === 0) xLabels.unshift(moment(Number(currentMidnight) - (numDays * 1000 * 60 * 60 * 24) + (i * 1000 * 60 * 60 * 24), 'x').format('ddd MMM D'));
         break;
@@ -218,7 +229,7 @@ function drawDataPoints (data, pxPerXValue, pxPerYValue, selectedField, numDays)
   const earliestDate = Number(currentMidnight) - (1000 * 60 * 60 * 24 * numDays);
 
   const pxCoordinates = [];
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < numDays; i++) {
     const dateToCheck = earliestDate + (1000 * 60 * 60 * 24 * i);
     const workout = data.find(workout => Math.abs(
       Number(moment(workout.date).format('x')) - dateToCheck) < (1000 * 60 * 60 * 23)
