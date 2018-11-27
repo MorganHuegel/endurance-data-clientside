@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import SelectField from './selectField';
 import Graph from './graph';
+import { convertDataUnits } from './normalizeData';
 
 export class DataAnalysis extends React.Component {
   constructor(props) {
@@ -23,9 +24,10 @@ export class DataAnalysis extends React.Component {
   }
 
   render() {
+    const normalizedData = convertDataUnits(this.props.currentUser.workouts, this.state.selectedField);
     let graphDisplay;
     if (this.state.selectedField) {
-      graphDisplay = <Graph data={this.props.currentUser.workouts} selectedField={this.state.selectedField} numDays={this.state.numDays}/>
+      graphDisplay = <Graph data={normalizedData} selectedField={this.state.selectedField} numDays={this.state.numDays}/>
     }
     return(
       <div className='data-analysis'>

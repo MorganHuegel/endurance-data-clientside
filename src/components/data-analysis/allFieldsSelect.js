@@ -6,9 +6,12 @@ export default function AllFieldsSelect(props) {
   let options = [<option value='' default key=''>{firstOption}</option>];
   fields.forEach(group => {
     group.inputs.forEach(field => {
-      options.push(
-        <option value={field.value} key={field.value}>{field.displayedValue}</option>
-      );
+      if (field.value !== 'notes') {
+        options.push(
+          <option value={field.value} key={field.value}>{field.displayedValue}</option>
+        );
+      }
+     
     });
   });
 

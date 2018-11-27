@@ -106,7 +106,7 @@ export const fields = [
     displayName: 'Injury-Prevention Details',
     inputs: [
       {value: 'minutesStretching', displayedValue:'Time Stretching', sidenote:'(min)'},
-      {value: 'minutesFoamRollingMassage', displayedValue:'Time FoamRolling / Massage', sidenote:'(min)'},
+      {value: 'minutesFoamRollingMassage', displayedValue:'Time Foam Rolling / Massage', sidenote:'(min)'},
       {value: 'minutesCore', displayedValue:'Time on Core Work', sidenote:''},
       {value: 'injuryRating', displayedValue:'Injury Rating', sidenote:'(1-10)'},
       {value: 'sorenessRating', displayedValue:'Soreness Rating', sidenote:'(1-10)'}

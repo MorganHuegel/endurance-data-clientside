@@ -31,7 +31,7 @@ export function renderInputs(field, form, amountDefault=null, unitDefault=null, 
               </div>
             </div>
           )
-        case('averagePace'): //////////////////// FIX THIS ONE ////////////
+        case('averagePace'):
           return (
             <div key={field} className='form-field'>
               <button type='button' onClick={buttonFunction} value={field} className='deleteFieldButton' title='Remove This Field'>X</button>
@@ -45,7 +45,7 @@ export function renderInputs(field, form, amountDefault=null, unitDefault=null, 
               </div>
             </div>
           )
-          case('maximumPace'): ///////////////// FIX THIS ONE ///////////
+          case('maximumPace'):
             return (
               <div key={field} className='form-field'>
                 <button type='button' onClick={buttonFunction} value={field} className='deleteFieldButton' title='Remove This Field'>X</button>

@@ -90,7 +90,9 @@ function drawHorizontalGrid (data, selectedField) {
   }
 
   // Calculate what to count by
-  const axisInterval = Math.floor(maxValue / 10); // 2's from 0-22
+  const axisInterval = Math.floor(maxValue / 10) > 0 ? 
+    Math.floor(maxValue / 10) : 
+    0.5;
 
   // Calculate how many lines it will take to get above the max value
   let numLines = 0;
@@ -134,7 +136,7 @@ function drawHorizontalGrid (data, selectedField) {
       })
       .attr('x', () => {
         if (window.innerWidth < 700) return 0;
-        else return 12;
+        else return 10;
       })
       .attr('class', 'y-axis');
   }
@@ -153,7 +155,7 @@ function drawVerticalGrid (numDays) {
   const graphHeight = graphContainer.getBoundingClientRect().height;
 
   const pxPerLine = graphWidth / numDays;
-  for (let i = 0; i < numDays; i++) {
+  for (let i = 0; i <= numDays; i++) {
     select(svg)
       .append('rect')
       .attr('width', '1px')
@@ -229,7 +231,7 @@ function drawDataPoints (data, pxPerXValue, pxPerYValue, selectedField, numDays)
   const earliestDate = Number(currentMidnight) - (1000 * 60 * 60 * 24 * numDays);
 
   const pxCoordinates = [];
-  for (let i = 0; i < numDays; i++) {
+  for (let i = 0; i <= numDays; i++) {
     const dateToCheck = earliestDate + (1000 * 60 * 60 * 24 * i);
     const workout = data.find(workout => Math.abs(
       Number(moment(workout.date).format('x')) - dateToCheck) < (1000 * 60 * 60 * 23)
