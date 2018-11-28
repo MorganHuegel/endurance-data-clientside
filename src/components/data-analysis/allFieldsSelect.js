@@ -16,7 +16,7 @@ export default function AllFieldsSelect(props) {
   });
 
   return (
-    <select id='select-field' name='select-field'>
+    <select id='select-field' name='select-field' onChange={e => props.handleChangeSelectedField(e)}>
       {options}
     </select>
   );

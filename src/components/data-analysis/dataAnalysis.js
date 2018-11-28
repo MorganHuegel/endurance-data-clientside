@@ -11,24 +11,25 @@ export class DataAnalysis extends React.Component {
     super(props);
     this.state = {
       selectedField: null,
-      numDays: null,
+      numDays: 30,
       includeOffDays: false
     }
   }
 
-  handleCheckOffDays = (e) => {
+  handleCheckOffDays = e => {
     this.setState({
       includeOffDays: e.target.checked
     });
   }
 
-  handleSelectField = e => {
+  handleChangeSelectedField = e => {
     e.preventDefault();
-    let numDays = Number(e.target['select-numDays'].value);
-    this.setState({
-      selectedField: e.target['select-field'].value,
-      numDays: numDays
-    });
+    this.setState({selectedField: e.target.value})
+  }
+
+  handleChangeNumDays = e => {
+    e.preventDefault();
+    this.setState({numDays: Number(e.target.value)})
   }
 
   render() {
@@ -46,9 +47,10 @@ export class DataAnalysis extends React.Component {
       <div className='data-analysis'>
         <SelectField 
           currentUser={this.props.currentUser} 
-          handleSelectField={this.handleSelectField} 
-          selected={this.state.selectedField} 
           handleCheckOffDays={this.handleCheckOffDays}
+          handleChangeNumDays={this.handleChangeNumDays}
+          handleChangeSelectedField={this.handleChangeSelectedField}
+          selected={this.state.selectedField} 
         />
         {graphDisplay}
       </div>

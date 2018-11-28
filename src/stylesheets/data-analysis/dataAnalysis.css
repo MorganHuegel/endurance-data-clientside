@@ -15,20 +15,8 @@
   margin: 40px 0 20px 0;
 }
 
-.data-analysis button {
-  width: 150px;
-  height: 40px;
-  font-size: 20px;
-  color: rgb(50, 50, 150);
-  border: 1px solid rgb(50, 50, 150);
-  border-radius: 5px;
-}
-
-.data-analysis button:hover, .data-analysis button:focus {
+.data-analysis .off-days-container label:hover, .data-analysis .off-days-container input:hover {
   cursor: pointer;
-  color: white;
-  background-color: rgb(50, 50, 150);
-  border: 1px solid rgb(100, 100, 100)
 }
 
 
@@ -52,7 +40,7 @@
 @media only screen and (min-width: 700px) {
     .data-analysis figure {
     position: absolute;
-    top: 390px;
+    top: 370px;
     border: 2px solid rgba(254, 106, 64, 0.4);
     width: 90vw;
     margin: 0 0 50px calc(-1 * (90vw - 560px) / 2 );
