@@ -34,6 +34,11 @@
   r: 3;
 }
 
+.data-analysis .average-line {
+  stroke: red;
+  stroke-dasharray: 5;
+}
+
 .data-analysis .no-data-message {
   font-size: 16px;
   fill: red;

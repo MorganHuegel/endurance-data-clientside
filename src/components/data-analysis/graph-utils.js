@@ -11,6 +11,7 @@ export function changeGraph (data, numDays, selectedField) {
   }
   const pxPerYValue = drawHorizontalGrid(recentWorkouts, selectedField);
   const pxPerXValue = drawVerticalGrid(numDays);
+  drawAverage(recentWorkouts, pxPerYValue, selectedField, numDays);
   drawDataPoints(recentWorkouts, pxPerXValue, pxPerYValue, selectedField, numDays);
   return true;
 }
@@ -223,6 +224,37 @@ function drawVerticalGrid (numDays) {
   }
 
   return pxPerLine;  
+}
+
+
+function drawAverage(data, pxPerYValue, selectedField, numDays) {
+  let total = 0;
+  data.forEach(workout => {
+    const value = workout[selectedField].amount || workout[selectedField];
+    total += value;
+  });
+
+  const average = total / numDays;
+  const svg = document.getElementsByClassName('da-graph')[0];
+  const graphContainer = document.getElementsByTagName('polygon')[0];
+  const graphHeight = graphContainer.getBoundingClientRect().height;
+
+  select(svg)
+    .append('rect')
+    .attr('width', () => {
+      if (window.innerWidth < 700) return '100%';
+      else return 'calc(100% - 60px)';
+    })
+    .attr('height', '1px')
+    .attr('y', () => {
+      if (window.innerWidth < 700) return graphHeight - (pxPerYValue * average);
+      else return graphHeight - (pxPerYValue * average) + 30;
+    })
+    .attr('x', () => {
+      if (window.innerWidth < 700) return '0';
+      else return '30px';
+    })
+    .attr('class', 'average-line')
 }
 
 
