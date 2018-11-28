@@ -35,7 +35,6 @@ export default class Graph extends React.Component {
     for (let i = 0; i < 3; i++) {
       const correctField = fields[i].inputs.find(field => field.value === this.props.selectedField)
       if (correctField) captionField = correctField;
-      else continue;
     }
 
     // Only use most recent for calculating average
@@ -56,7 +55,9 @@ export default class Graph extends React.Component {
 
     return (
       <figure>
-        <figcaption>Average <span className='caption'>{captionField.displayedValue}</span> over the last {this.props.numDays} days is {average}</figcaption>
+        <figcaption>
+          Averaging {average} {captionField.normalizedUnit} per day for <span className='caption'>{captionField.displayedValue}</span>.
+        </figcaption>
         <svg className='da-graph'></svg>
       </figure>
     )
