@@ -1,7 +1,7 @@
 import moment from 'moment';
 import { select } from 'd3-selection';
 
-export function changeGraph (data, numDays, selectedField) {
+export function changeGraph (data, numDays, selectedField, includeOffDays) {
   document.getElementsByClassName('da-graph')[0].innerHTML = ''; // Resets the graph
   appendGraphContainer();
   const recentWorkouts = getRecentWorkouts(data, numDays, selectedField);
@@ -9,10 +9,10 @@ export function changeGraph (data, numDays, selectedField) {
     handleNoData(numDays);
     return false;
   }
-  const pxPerYValue = drawHorizontalGrid(recentWorkouts, selectedField);
   const pxPerXValue = drawVerticalGrid(numDays);
-  drawAverage(recentWorkouts, pxPerYValue, selectedField, numDays);
-  drawDataPoints(recentWorkouts, pxPerXValue, pxPerYValue, selectedField, numDays);
+  const pxPerYValue = drawHorizontalGrid(recentWorkouts, selectedField);
+  drawAverage(recentWorkouts, pxPerYValue, selectedField, numDays, includeOffDays);
+  drawDataPoints(recentWorkouts, pxPerXValue, pxPerYValue, selectedField, numDays, includeOffDays);
   return true;
 }
 
@@ -227,14 +227,17 @@ function drawVerticalGrid (numDays) {
 }
 
 
-function drawAverage(data, pxPerYValue, selectedField, numDays) {
+
+
+
+function drawAverage(data, pxPerYValue, selectedField, numDays, includeOffDays) {
   let total = 0;
   data.forEach(workout => {
     const value = workout[selectedField].amount || workout[selectedField];
     total += value;
   });
-
-  const average = total / numDays;
+  
+  const average = includeOffDays ? total / numDays : total / data.length;
   const svg = document.getElementsByClassName('da-graph')[0];
   const graphContainer = document.getElementsByTagName('polygon')[0];
   const graphHeight = graphContainer.getBoundingClientRect().height;
@@ -258,7 +261,10 @@ function drawAverage(data, pxPerYValue, selectedField, numDays) {
 }
 
 
-function drawDataPoints (data, pxPerXValue, pxPerYValue, selectedField, numDays) {
+
+
+
+function drawDataPoints (data, pxPerXValue, pxPerYValue, selectedField, numDays, includeOffDays) {
   const currentMidnight = moment(moment().format('MMM D YYYY'), 'MMM D YYYY').format('x');
   const earliestDate = Number(currentMidnight) - (1000 * 60 * 60 * 24 * numDays);
 
@@ -274,7 +280,7 @@ function drawDataPoints (data, pxPerXValue, pxPerYValue, selectedField, numDays)
       const yValue = datum * pxPerYValue;
       pxCoordinates.push([xValue, yValue]);
     } else {
-      pxCoordinates.push([i * pxPerXValue, 0])
+      if (includeOffDays) pxCoordinates.push([i * pxPerXValue, 0])
     }
   }
 

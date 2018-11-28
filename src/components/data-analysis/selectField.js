@@ -10,9 +10,18 @@ export default function SelectField(props) {
           <option value='60'>60</option>
         </select>
       days.</p>
+
       <div>
         <button type='submit'>See Data</button>
       </div>
+
+      <div className='off-days-container'>
+        <input type='checkbox' name='off-days' id='off-days'
+          onChange={e => props.handleCheckOffDays(e)}
+        />
+        <label htmlFor='off-days'>Include off-days</label>
+      </div>
+
     </form>
   )
 }

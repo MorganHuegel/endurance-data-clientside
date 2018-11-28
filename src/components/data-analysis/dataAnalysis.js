@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import '../../stylesheets/data-analysis/dataAnalysis.css'
 
 import SelectField from './selectField';
 import Graph from './graph';
@@ -10,8 +11,15 @@ export class DataAnalysis extends React.Component {
     super(props);
     this.state = {
       selectedField: null,
-      numDays: null
+      numDays: null,
+      includeOffDays: false
     }
+  }
+
+  handleCheckOffDays = (e) => {
+    this.setState({
+      includeOffDays: e.target.checked
+    });
   }
 
   handleSelectField = e => {
@@ -27,12 +35,21 @@ export class DataAnalysis extends React.Component {
     const normalizedData = convertDataUnits(this.props.currentUser.workouts, this.state.selectedField);
     let graphDisplay;
     if (this.state.selectedField) {
-      graphDisplay = <Graph data={normalizedData} selectedField={this.state.selectedField} numDays={this.state.numDays}/>
+      graphDisplay = <Graph 
+        data={normalizedData} 
+        selectedField={this.state.selectedField} 
+        numDays={this.state.numDays} 
+        includeOffDays={this.state.includeOffDays}
+      />
     }
     return(
       <div className='data-analysis'>
-        <h2>Data Analysis</h2>
-        <SelectField currentUser={this.props.currentUser} handleSelectField={this.handleSelectField} selected={this.state.selectedField}/>
+        <SelectField 
+          currentUser={this.props.currentUser} 
+          handleSelectField={this.handleSelectField} 
+          selected={this.state.selectedField} 
+          handleCheckOffDays={this.handleCheckOffDays}
+        />
         {graphDisplay}
       </div>
     );

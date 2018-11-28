@@ -110,13 +110,6 @@ export function convertDataUnits (workoutData, selectedField) {
         return workout;
       });
     default:
-      console.log('DEFAULT');
+      return workouts;
   }
-
-  return workouts;
 }
-
-// <option value='ounces'>ounces</option>
-//  <option value='cups'>cups</option>
-// <option value='liters'>liters</option>
-// <option value='gallons'>gallons</option>

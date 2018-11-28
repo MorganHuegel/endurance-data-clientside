@@ -15,12 +15,12 @@ export default class Graph extends React.Component {
   }
 
   componentDidMount(){
-    changeGraph(this.props.data, this.props.numDays, this.props.selectedField);
+    changeGraph(this.props.data, this.props.numDays, this.props.selectedField, this.props.includeOffDays);
     window.addEventListener('resize', this.resizeWindow);
   }
   
   componentDidUpdate(){
-    changeGraph(this.props.data, this.props.numDays, this.props.selectedField);
+    changeGraph(this.props.data, this.props.numDays, this.props.selectedField, this.props.includeOffDays);
   }
 
   resizeWindow = () => {
@@ -51,7 +51,10 @@ export default class Graph extends React.Component {
       if (value) total += value;
     });
 
-    const average = (total / this.props.numDays).toFixed(2);
+    let average = this.props.includeOffDays ? (total / this.props.numDays).toFixed(2) : (total / workouts.length).toFixed(2);
+    if (average === 'NaN' || average === '0.00') {
+      average = '0';
+    }
 
     return (
       <figure>
