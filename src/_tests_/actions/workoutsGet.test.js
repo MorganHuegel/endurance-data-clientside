@@ -15,8 +15,8 @@ describe('GET workouts Asynch action', () => {
     const headers = {
       "headers": {
         "Content-Type": "application/json", 
-        "authorization": "Bearer undefined" //undefined because it can't actually pull a token from local storage
-      }                                     //localStoragae.getItem is just a spy function by this point
+        "authorization": "Bearer null" //null because it can't actually pull a token from local storage
+      }                                //localStoragae.getItem is just a spy function by this point
     };
 
     //simulates the fetch method resolve case
@@ -53,8 +53,8 @@ describe('GET workouts Asynch action', () => {
     const headers = {
       "headers": {
         "Content-Type": "application/json", 
-        "authorization": "Bearer undefined" //undefined because it can't actually pull a token from local storage
-      }                                     //localStoragae.getItem is just a spy function by this point
+        "authorization": "Bearer null" //null because it can't actually pull a token from local storage
+      }                                //localStoragae.getItem is just a spy function by this point
     };
 
     //simulates the fetch method resolve case
