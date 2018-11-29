@@ -7,13 +7,6 @@
 ## Deployment:
 
   App is deployed at: https://endurancedata.netlify.com/ 
-  
-  *Dummy User for demonstration purposes:*
-  
-  **username**: demouser
-  
-  **password**: password
-
 
   Server-side repo [here](https://github.com/MorganHuegel/endurance-data-serverside)
 
@@ -26,7 +19,7 @@
 
   Endurance Data is unique to each user because each user can choose what data he/she wants to log.  For example, a beginning runner might only want to track their total mileage for each day.  This user will receive a user-interface that is simplified to only include this input field.  However, a professional cyclist might want to keep track of Total Time, Average Heartrate, Max Heartrate, Average Watts, Max Watts, Hours of Sleep, Soreness Rating, Time Spent Stretching, etc. for each day.  This user would have an interface where each of these input fields is brought up by default.  Endurance Data stores each workout in a database, and allows users to recall their workouts.
 
-  ...*Feature Coming Soon*...Endurance data will allow a user to perform an analysis of their data.  For example, a user might selete to see *"Miles per day over the past week"*, and Endurance Data would display *"You averaged 5.2 miles per day over the past week"*.  This feature is still in production, and the app works perfectly fine without it for now.
+  Endurance data also allows users to perform an analysis of their data.  For example, a user might select to see *"Miles per day over the past 30 days"*, and Endurance Data would display *"You averaged 5.2 miles per day over the past 30 days"* along with a line graph.
 
 
 
@@ -57,6 +50,12 @@
 ![Adding a new workout](./screenshots/add-workout-screen.png)
 
 
+#### Analyzing the Data:
+
+
+![Analysis of data](./screenshots/data-analysis-wide.png)
+
+
 #### Main page for changing user settings:
 
 
@@ -74,9 +73,9 @@
 
    Endurance Data is created using React for the front-end and Node.js for the back-end.
 
-   *Front-end:* The clientside of this app is created using React.  Redux is used to manage the high-level state of the app.  React Stateful components are used to manage the state that is specific to each component.  `react-router-dom` is used to route users to different components based on their url path.  `moment.js` is used to format dates and perform calculations with the dates.  `enzyme` is used to test each component.  As of now, each component is tested, but many tests are just smoke tests.  API calls are made using Javascript's `fetch` method.  The server-side is located in a separate repo.
+   *Front-end:* The clientside of this app is created using React.  Redux is used to manage the high-level state of the app.  React Stateful components are used to manage the state that is specific to each component.  `react-router-dom` is used to route users to different components based on their url path.  `moment.js` is used to format dates and perform calculations with the dates.  `enzyme` is used to test components.  `d3` is used to display the data-analysis feature.  The server-side is located in a separate repo.
 
-   *Back-end:* Here is the [server-side repo](https://github.com/thinkful-ei22/morgan-fullStack-server.git) for this application.  The server-side is written in `Node.js` and uses `express` to route incoming requests.  The app uses a MongoDB to store the data, which is hosted by mLab.com.  The server-side uses `bcryptjs` to encrypt user passwords for maximum security.  The server-side also uses the `jsonwebtoken` library to issue webtokens to users, which is stored in local storage on the front-end.  The server-side uses `mongoose` as the query library when making calls to the database.  Server-side tests are written using the `mocha` and `chai` libraries, with `chai-http` to simulate requests to the server.  The back-end is deployed live using [heroku](https://endurance-data-server.herokuapp.com/).
+   *Back-end:* Here is the [server-side repo](https://github.com/thinkful-ei22/morgan-fullStack-server.git) for this application.  The server-side is written in `Node.js` and uses `express` to route incoming requests.  The app uses a MongoDB to store the data, which is hosted on mLab.com.  The server-side uses `bcryptjs` to encrypt user passwords for maximum security.  The server-side also uses the `jsonwebtoken` library to issue webtokens to users, which is stored in local storage on the front-end.  The server-side uses `mongoose` as the query library when making calls to the database.  Server-side tests are written using the `mocha` and `chai` libraries, with `chai-http` to simulate requests to the server.  The back-end is deployed live using [heroku](https://endurance-data-server.herokuapp.com/).
 
 ## Description of Key Code Snippets:
 
@@ -108,7 +107,7 @@ this.state = {
 ```
     
     
-- *Data-Analysis*: This feature is not yet in production.
+- *Data-Analysis*: The `<graph />` component lives in the path `/src/componets/data-analysis/graph.js`.  The componenent uses two utility files that draw the graph using DOM `d3` and DOM-manipulation of an `<svg>` element.  The two utility files are `graph-utils.js`, which contains the main function that draws the graph, and `normalizeData.js`, which converts all data to the same unit of measure (*km to miles, hours to min, etc.*)
 
 - *Profile*: The `<Profile />` component lives in the path `/src/componets/user-preferences/profile.js`.  It corresponse to the ".../profile" url.  It's main purpose is to render a page for users to change their personal settings.  This page uses `<Link />` components to re-route users to the appropriate component for changing their settings.  Here is an example of how this component links to other components with the path ".../profile/\[other-component]"  :
 
