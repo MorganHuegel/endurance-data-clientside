@@ -1,0 +1,51 @@
+.data-analysis svg {
+  width: 100%;
+  height: 80vw;
+}
+
+.data-analysis rect {
+  stroke: rgb(220, 220, 220)
+}
+
+.data-analysis text {
+  font-size: 12px;
+}
+
+.data-analysis line {
+  stroke: rgb(234, 86, 44);
+  stroke-width: 2;
+}
+
+.data-analysis circle {
+  fill: rgb(234, 86, 44);
+  stroke: black;
+  r: 3;
+}
+
+.data-analysis .average-line {
+  stroke: red;
+  stroke-dasharray: 5;
+}
+
+.data-analysis .no-data-message {
+  font-size: 16px;
+  fill: red;
+}
+
+@media only screen and (min-width: 700px) {
+  .data-analysis svg {
+    height: 80vh;
+  }
+  .y-axis {
+    fill: black;
+  }
+  .data-analysis line {
+    stroke-width: 3;
+  }
+  .data-analysis circle {
+    r: 5;
+  }
+  .data-analysis .no-data-message {
+    font-size: 20px;
+  }
+}

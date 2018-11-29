@@ -104,7 +104,7 @@ export class Workouts extends React.Component{
     }
   }
 
-  render(props){
+  render(){
     if(this.state.addingWorkout){
       return <AddWorkout 
                 toggleAddState={this.toggleAddState}
@@ -117,6 +117,7 @@ export class Workouts extends React.Component{
 
     } else if (this.state.editingWorkout) {
       return <SingleWorkoutEdit
+                dispatch={this.props.dispatch}
                 currentWorkout={this.state.currentWorkout}
                 toggleEditState={this.toggleEditState}
                 handleEditFormSubmit={this.handleEditFormSubmit}
@@ -154,7 +155,6 @@ export class Workouts extends React.Component{
 const mapStateToProps = (state, props) => {
   return{
     currentUser: state.auth.currentUser,
-    workoutError: state.auth.workoutError
   }
 }
 

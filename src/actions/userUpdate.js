@@ -31,7 +31,6 @@ export const updateUserUsernameLocal = (updateObj) => {
 export const updateUserInfo = (updateObj) => (dispatch) => {
   dispatch(changeUserLoading(true));
   const authToken = localStorage.getItem('authToken');
-  console.log('UPDATE OBJECT: ',updateObj);
   return fetch(`${SERVER_URL}/users`, {
     method: 'PUT',
     headers: {

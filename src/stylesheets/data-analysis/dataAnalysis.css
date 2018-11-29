@@ -1,0 +1,48 @@
+.data-analysis p {
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.data-analysis select {
+  margin: 0 8px 0 8px;
+}
+
+.data-analysis #select-field {
+  width: 140px;
+}
+
+.data-analysis .off-days-container {
+  margin: 40px 0 20px 0;
+}
+
+.data-analysis .off-days-container label:hover, .data-analysis .off-days-container input:hover {
+  cursor: pointer;
+}
+
+
+.data-analysis figure {
+  width: calc(100% + 40px);
+  background-color: white;
+  padding: 10px 0 0 0;
+  margin: 30px 0 50px -20px;
+  text-align: center;
+}
+
+.data-analysis figcaption {
+  padding: 0 10px 0 10px;
+  margin: 20px 0;
+}
+
+.data-analysis span.caption {
+  font-style: italic;
+}
+
+@media only screen and (min-width: 700px) {
+    .data-analysis figure {
+    position: absolute;
+    top: 370px;
+    border: 2px solid rgba(254, 106, 64, 0.4);
+    width: 90vw;
+    margin: 0 0 50px calc(-1 * (90vw - 560px) / 2 );
+  }
+}
